@@ -18,7 +18,7 @@ const Dashboard = () => {
         const patientsCount = patientsResponse.data.count;
 
         const appointmentsResponse = await axios.get('https://doctermy.onrender.com/api/v1/appointment');
-        const appointmentsCount = appointmentsResponse.data.length; 
+        const appointmentsCount = appointmentsResponse.data.length;
 
         setStats({
           doctors: doctorsCount,
