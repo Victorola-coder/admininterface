@@ -1,0 +1,6 @@
+.home {
+  background-color: #F6F6F6;
+  padding: 20px;
+  box-sizing: border-box;
+  /* Ensure padding doesn't affect width */
+}

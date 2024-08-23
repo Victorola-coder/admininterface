@@ -1,0 +1,52 @@
+.navbar {
+  height: 60px;
+  background-color: #00B4D8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  /* Ensures it stays on top of both the sidebar and content */
+}
+
+.logo {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 24px;
+  color: white;
+}
+
+.icons-container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-icon {
+  color: #f4f4f4;
+  margin-right: 20px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.user-name {
+  font-family: 'Noto Sans', sans-serif;
+  color: #f4f4f4;
+}
+
+.navbar-toggle {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .navbar-toggle {
+    display: block;
+  }
+}

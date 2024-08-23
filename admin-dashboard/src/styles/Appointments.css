@@ -1,0 +1,60 @@
+.appointments-page {
+  padding: 30px;
+}
+
+.appointments-page h1 {
+  margin-bottom: 20px;
+}
+
+.appointments-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.appointments-section {
+  flex: 1;
+  min-width: 300px;
+  /* Ensures sections don't get too small */
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.appointments-section h2 {
+  margin-bottom: 10px;
+}
+
+.appointments-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.appointments-section li {
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.pending {
+  border-left: 4px solid #f0ad4e;
+  /* Orange border */
+}
+
+.approved {
+  border-left: 4px solid #5cb85c;
+  /* Green border */
+}
+
+.declined {
+  border-left: 4px solid #d9534f;
+  /* Red border */
+}
+
+.completed {
+  border-left: 4px solid #0275d8;
+  /* Blue border */
+}
