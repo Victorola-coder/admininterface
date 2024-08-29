@@ -1,30 +1,30 @@
-
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useQuery } from 'react-query';
-import Sidebar from './Sidebar';
-import '../styles/Appointments.css';
+import axios from "axios";
+import Sidebar from "./Sidebar";
+import { token } from "../config";
+import "../styles/Appointments.css";
+// import { useQuery } from "react-query";
+import { useEffect, useState } from "react";
 
 const Appointments = () => {
   const [appointments, setAppointments] = useState([]);
-  const [activeTab, setActiveTab] = useState('Pending');
+  const [activeTab, setActiveTab] = useState("Pending");
 
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        let apiUrl = 'https://doctermy.onrender.com/api/v1/appointment';
+        let apiUrl = "https://doctermy.onrender.com/api/v1/appointment";
         if (activeTab) {
           apiUrl += `?status=${activeTab}`;
         }
         const result = await axios.get(apiUrl, {
-          headers:{
-            Authirization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmM4Zjc2MThhNzY0YzM5ZDRlNzUxYmIiLCJlbWFpbCI6InRoYWJpc29lemlva3d1QHlhaG9vLmNvLnphIiwiaWF0IjoxNzI0NjI2NzY1LCJleHAiOjE3MjUyMzE1NjV9.eHRwW3099KF-7NpEBO99fxbPjKT5pQEL5MPiq7xYiK4'
-          }
+          headers: {
+            Authirization: "Bearer" + token,
+          },
         });
-        console.log("The result is", result)
+        console.log("The result is", result);
         setAppointments(result.data.data);
       } catch (error) {
-        console.error('Error fetching appointments:', error);
+        console.error("Error fetching appointments:", error);
       }
     };
 
@@ -32,56 +32,54 @@ const Appointments = () => {
   }, [activeTab]);
 
   return (
-    <div className='app-header'>
+    <div className="app-header">
       <Sidebar />
       {/* <div className="appointments-container"> */}
-        {/* <h1>Appointments</h1> */}
-        <div className="tabs">
-          <button
-            className={activeTab === 'Pending' ? 'active' : ''}
-            onClick={() => setActiveTab('Pending')}
-          >
-            Pending
-          </button>
-          <button
-            className={activeTab === 'Approved' ? 'active' : ''}
-            onClick={() => setActiveTab('Approved')}
-          >
-            Approved
-          </button>
-          <button
-            className={activeTab === 'Declined' ? 'active' : ''}
-            onClick={() => setActiveTab('Declined')}
-          >
-            Declined
-          </button>
-          <button
-            className={activeTab === 'Completed' ? 'active' : ''}
-            onClick={() => setActiveTab('Completed')}
-          >
-            Completed
-          </button>
-        </div>
-        <ul>
-          {appointments.map((appointment) => (
-            <li key={appointment.id}>
-              <span>{appointment.date} - {appointment.status}</span>
-              <span>{appointment.doctor.name} - {appointment.patient.name}</span>
-            </li>
-          ))}
-        </ul>
+      {/* <h1>Appointments</h1> */}
+      <div className="tabs">
+        <button
+          className={activeTab === "Pending" ? "active" : ""}
+          onClick={() => setActiveTab("Pending")}
+        >
+          Pending
+        </button>
+        <button
+          className={activeTab === "Approved" ? "active" : ""}
+          onClick={() => setActiveTab("Approved")}
+        >
+          Approved
+        </button>
+        <button
+          className={activeTab === "Declined" ? "active" : ""}
+          onClick={() => setActiveTab("Declined")}
+        >
+          Declined
+        </button>
+        <button
+          className={activeTab === "Completed" ? "active" : ""}
+          onClick={() => setActiveTab("Completed")}
+        >
+          Completed
+        </button>
       </div>
+      <ul>
+        {appointments.map((appointment) => (
+          <li key={appointment.id}>
+            <span>
+              {appointment.date} - {appointment.status}
+            </span>
+            <span>
+              {appointment.doctor.name} - {appointment.patient.name}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
     // </div>
   );
 };
 
 export default Appointments;
-
-
-
-
-
-
 
 // import { AiOutlineSearch } from "react-icons/ai"
 // import { MdNotifications } from "react-icons/md"
@@ -108,13 +106,13 @@ export default Appointments;
 //       navigate("/signin")
 //     }
 //   }, [navigate]);
-  
+
 //   return (
 //     <>
 //         <div className="dashboard">
 //         <nav className="dash-navigation">
 //           {/* <img src={dashlogo} className="doclogos" /> */}
-          
+
 //           <ul className="nav-icons">
 //             <li>
 //               <AiOutlineSearch className="pfps"/>
@@ -130,7 +128,7 @@ export default Appointments;
 //           </ul>
 //         </nav>
 //       </div>
-     
+
 //     </>
 //   )
 // }
@@ -162,7 +160,6 @@ export default Appointments;
 //     return () => clearInterval(interval);
 //   }, [filter]);
 
-  
 //   return (
 //     <div>
 //       <Sidebar />
@@ -300,4 +297,3 @@ export default Appointments;
 // };
 
 // export default Appointments;
-

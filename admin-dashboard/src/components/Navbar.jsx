@@ -1,9 +1,28 @@
-// src/components/Navbar.js
-import React from 'react';
-import Logo from '/logo.png'
-import { FaSearch, FaBell, FaUser } from 'react-icons/fa';
-import './Navbar.css';
+/* eslint-disable react/prop-types */
+import Logo from "/logo.png";
+import { FaSearch, FaBell, FaUser } from "react-icons/fa";
+import "./Navbar.css";
 
+const Navbar = ({ toggleSidebar }) => (
+  <div className="navbar">
+    <button className="navbar-toggle" onClick={toggleSidebar}>
+      ☰
+    </button>
+    <div className="logo">
+      <img src={Logo} alt="" />
+    </div>
+    <div className="icons-container">
+      <FaSearch className="navbar-icon" />
+      <FaBell className="navbar-icon" />
+      <FaUser className="navbar-icon" />
+      <span className="user-name">Admin</span>
+    </div>
+  </div>
+);
+
+export default Navbar;
+
+// src/components/Navbar.js
 // const Navbar = ({toggleSidebar}) => {
 //   return (
 //     <nav className="navbar">
@@ -18,22 +37,3 @@ import './Navbar.css';
 // };
 
 // export default Navbar;
-
-
-
-const Navbar = ({ toggleSidebar }) => (
-  <div className="navbar">
-    <button className="navbar-toggle" onClick={toggleSidebar}>
-      ☰
-    </button>
-    <div className="logo"><img src={Logo} alt="" /></div>
-    <div className="icons-container">
-      <FaSearch className="navbar-icon" />
-      <FaBell className="navbar-icon" />
-      <FaUser className="navbar-icon" />
-      <span className="user-name">Admin</span>
-    </div>
-  </div>
-);
-
-export default Navbar;
