@@ -16,8 +16,13 @@ const Appointments = () => {
         if (activeTab) {
           apiUrl += `?status=${activeTab}`;
         }
-        const result = await axios.get(apiUrl);
-        setAppointments(result.data);
+        const result = await axios.get(apiUrl, {
+          headers:{
+            Authirization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmM4Zjc2MThhNzY0YzM5ZDRlNzUxYmIiLCJlbWFpbCI6InRoYWJpc29lemlva3d1QHlhaG9vLmNvLnphIiwiaWF0IjoxNzI0NjI2NzY1LCJleHAiOjE3MjUyMzE1NjV9.eHRwW3099KF-7NpEBO99fxbPjKT5pQEL5MPiq7xYiK4'
+          }
+        });
+        console.log("The result is", result)
+        setAppointments(result.data.data);
       } catch (error) {
         console.error('Error fetching appointments:', error);
       }
@@ -27,9 +32,9 @@ const Appointments = () => {
   }, [activeTab]);
 
   return (
-    <div>
+    <div className='app-header'>
       <Sidebar />
-      <div className="appointments-container" style={{ marginLeft: '220px', padding: '20px' }}>
+      {/* <div className="appointments-container"> */}
         {/* <h1>Appointments</h1> */}
         <div className="tabs">
           <button
@@ -66,12 +71,71 @@ const Appointments = () => {
           ))}
         </ul>
       </div>
-    </div>
+    // </div>
   );
 };
 
 export default Appointments;
 
+
+
+
+
+
+
+// import { AiOutlineSearch } from "react-icons/ai"
+// import { MdNotifications } from "react-icons/md"
+// // import dashlogo from "../assets/dashboardlogo.png";
+// import "../Styles/Home.css";
+// import { FaCircleUser } from "react-icons/fa6";
+// import { useEffect, useState } from "react";
+// // import { useSelector } from "react-redux";
+// import { useNavigate } from "react-router-dom";
+// import Dropdown from "./Dropdown";
+
+// const Dashboardnavigation = () => {
+//   const [user, setUser] = useState(null);
+//   const navigate = useNavigate();
+
+//   // const userName = useSelector((store) => store.user.name);
+
+//   useEffect(() => {
+//     const userData = localStorage.getItem("user");
+
+//     if (userData) {
+//       setUser(JSON.parse(userData));
+//     }else {
+//       navigate("/signin")
+//     }
+//   }, [navigate]);
+  
+//   return (
+//     <>
+//         <div className="dashboard">
+//         <nav className="dash-navigation">
+//           {/* <img src={dashlogo} className="doclogos" /> */}
+          
+//           <ul className="nav-icons">
+//             <li>
+//               <AiOutlineSearch className="pfps"/>
+//             </li>
+//             <li>
+//               <MdNotifications  className="pfps"/>
+//             </li>
+//           <div className="profile">
+//             <FaCircleUser className="pfp"/>
+//             <p>{user ? user.name : ""}</p>
+//             <Dropdown/>
+//           </div>
+//           </ul>
+//         </nav>
+//       </div>
+     
+//     </>
+//   )
+// }
+
+// export default Dashboardnavigation
 
 // const Appointments = () => {
 //   const [appointments, setAppointments] = useState([]);

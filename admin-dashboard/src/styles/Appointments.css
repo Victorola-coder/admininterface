@@ -6,12 +6,32 @@
   margin-bottom: 20px;
 }
 
-.appointments-container {
+
+/* .appointments-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+} */
+.tabs {
+  display: flex;
+  gap: 100px;
+  justify-content: space-between;
+  padding: 15px;
+  height: 65px;
+  align-items: centre;
+  background-color: #ffffff;
+  width: 89vw;
 }
-
+.app-header {
+    display: flex;
+    gap: 100px;
+    justify-content: space-between;
+    padding: 15px;
+    height: 65px;
+    align-items: center;
+    background-color: #ffffff;
+    width: 89vw;
+}
 .appointments-section {
   flex: 1;
   min-width: 300px;
