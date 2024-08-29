@@ -3,7 +3,7 @@ import Sidebar from "./Sidebar";
 import "../styles/Dashboard.css";
 // import { useQuery } from "react-query";
 import { useEffect, useState } from "react";
-import Dashboardnavigation from "./Dashboardnavigation";
+// import Dashboardnavigation from "./Dashboardnavigation";
 
 const Dashboard = () => {
   const [stats, setStats] = useState({ doctors: 0, patients: 0 });
@@ -61,7 +61,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Dashboardnavigation />
+      {/* <Dashboardnavigation />i */}
       <Sidebar />
       <div style={{ marginLeft: "220px", padding: "20px" }}>
         <h1>Welcome, Admin</h1>
