@@ -1,11 +1,10 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar';
-import Dashboard from './components/Dashboard';
-import Appointments from './components/Appointments';
-import Doctors from './components/Doctors';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import Dashboard from "./components/Dashboard";
+import Appointments from "./components/Appointments";
+import Doctors from "./components/Doctors";
 
 // Create a client
 const queryClient = new QueryClient();
