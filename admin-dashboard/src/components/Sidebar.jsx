@@ -7,25 +7,41 @@ import { MdOutlinePersonOutline } from "react-icons/md";
 
 // eslint-disable-next-line react/prop-types
 const Sidebar = ({ isOpen, toggleSidebar }) => (
-  <div className={`sidebar ${isOpen ? "open" : ""}`}>
-    <NavLink to="/" className="sidebar-link" onClick={toggleSidebar}>
-      <GoHomeFill className="sidebar-icon" />
+  <div
+    className={`bg-white shadow-[#00000026] h-[100dvh] p-[33px] flex flex-col ${
+      isOpen ? "open" : ""
+    }`}
+  >
+    <NavLink
+      to="/"
+      className="flex flex-col items-center"
+      onClick={toggleSidebar}
+    >
+      <GoHomeFill className="text-[24px] mb-[5px] active:text-[#007890]" />
       <span>Dashboard</span>
     </NavLink>
     <NavLink
       to="/appointments"
-      className="sidebar-link"
+      className="flex flex-col items-center"
       onClick={toggleSidebar}
     >
-      <TbCalendarTime className="sidebar-icon" />
+      <TbCalendarTime className="text-[24px] mb-[5px] active:text-[#007890]" />
       <span>Appointments</span>
     </NavLink>
-    <NavLink to="/Doctors" className="sidebar-link" onClick={toggleSidebar}>
-      <LuStethoscope className="sidebar-icon" />
+    <NavLink
+      to="/Doctors"
+      className="flex flex-col items-center"
+      onClick={toggleSidebar}
+    >
+      <LuStethoscope className="text-[24px] mb-[5px] active:text-[#007890]" />
       <span>Doctors</span>
     </NavLink>
-    <NavLink to="/Patients" className="sidebar-link" onClick={toggleSidebar}>
-      <MdOutlinePersonOutline className="sidebar-icon" />
+    <NavLink
+      to="/Patients"
+      className="flex flex-col items-center"
+      onClick={toggleSidebar}
+    >
+      <MdOutlinePersonOutline className="text-[24px] mb-[5px] active:text-[#007890]" />
       <span>Patients</span>
     </NavLink>
   </div>
