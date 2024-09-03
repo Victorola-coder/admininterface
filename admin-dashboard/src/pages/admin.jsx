@@ -1,5 +1,5 @@
-import { Admin } from "../layouts";
+import { Dashboard } from "../layouts";
 
-export default function admin() {
-  return <Admin>hello</Admin>;
+export default function Home() {
+  return <Dashboard>hello</Dashboard>;
 }

@@ -1,6 +1,6 @@
-import { useLocation, NavLink, Link } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 import { HomeIcon, Appointment, Patients } from "./svgs";
-// import toast from "react-hot-toast";
+import clsx from "clsx";
 
 export default function Sidebar() {
   const data = [
@@ -20,7 +20,7 @@ export default function Sidebar() {
       id: 3,
       title: "doctor",
       icon: Patients,
-      path: "/doctor",
+      path: "/doctors",
     },
     {
       id: 4,
@@ -32,40 +32,32 @@ export default function Sidebar() {
 
   const location = useLocation();
   return (
-    <aside className="bg-white border-[#F9F9F9] border-[2px] py-8 px-5 hidden lg:flex flex-col">
-      <div className="flex flex-col gap-y-2 font-figtree text-[#001534]">
-        {data.map((Nvl, index) => (
+    <aside className="bg-white border-[#F9F9F9] border-[2px] py-8 px-5 flex flex-col">
+      <div className="flex flex-col gap-y-2 text-[#001534]">
+        {data.map((nvl, index) => (
           <div className="w-full" key={index}>
             <NavLink
-              to={Nvl.path}
+              to={nvl.path}
               className={({ isActive }) =>
                 isActive ? "text-primary" : "text-[#001534]"
               }
             >
-              <div className="flex items-center gap-4 p-3">
-                <Nvl.icon
-                  fill={location === Nvl.path ? "#1864FF" : "#001534"}
+              <div className="flex flex-col items-center gap-4 p-3">
+                <nvl.icon
+                  fill={location === nvl.path ? "#858585" : "#007890"}
                 />
                 <p
-                  className={`text-[16px] leading-[18px] text-inherit font-bold`}
+                  className={clsx(
+                    location === nvl.path ? "#858585" : "#007890",
+                    "text-[14px] leading-[16.8px] text-inherit"
+                  )}
                 >
-                  {Nvl.title}
+                  {nvl.title}
                 </p>
               </div>
             </NavLink>
           </div>
         ))}
-      </div>
-      <div className="mt-auto">
-        <button className="cursor-pointer flex p-3 gap-[12px] items-center bg-[#1864FF12] rounded-[10px] w-full justify-between">
-          <div className="flex items-center gap-x-[12px]">
-            <Link to="/creator">
-              <p className="font-jakarta text-[16px] font-bold leading-[20.16px] text-[#1864ff]">
-                view page
-              </p>
-            </Link>
-          </div>
-        </button>
       </div>
     </aside>
   );

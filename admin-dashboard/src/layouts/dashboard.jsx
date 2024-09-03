@@ -1,7 +1,7 @@
 import { Navbar, Sidebar } from "../components";
 
 // eslint-disable-next-line react/prop-types
-export default function AdminDashboard({ children }) {
+export default function Dashboard({ children }) {
   return (
     <div className="h-screen w-full bg-white grid_ lg:grid-cols-[270px_1fr]_">
       <Navbar />
