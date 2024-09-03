@@ -63,6 +63,14 @@ export default {
             opacity: "1",
           },
         },
+        screens: {
+          'xs': '480px',  // Extra small devices
+          'sm': '640px',  // Small devices (mobile)
+          'md': '768px',  // Medium devices (tablets)
+          'lg': '1024px', // Large devices (desktops)
+          'xl': '1280px', // Extra large devices (large desktops)
+          '2xl': '1536px' // 2x large devices
+        },
       },
       animation: {
         "fade-in": "fade-effect 300ms linear",
