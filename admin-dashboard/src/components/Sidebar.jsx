@@ -1,68 +1,72 @@
-// import "./styles/Sidebar.css";
-import { NavLink } from "react-router-dom";
-import { GoHomeFill } from "react-icons/go";
-import { TbCalendarTime } from "react-icons/tb";
-import { LuStethoscope } from "react-icons/lu";
-import { MdOutlinePersonOutline } from "react-icons/md";
+import { useLocation, NavLink, Link } from "react-router-dom";
+import { HomeIcon, Appointment, Patients } from "./svgs";
+// import toast from "react-hot-toast";
 
-// eslint-disable-next-line react/prop-types
-const Sidebar = ({ isOpen, toggleSidebar }) => (
-  <div
-    className={`bg-white shadow-[#00000026] h-[100dvh] p-[33px] flex flex-col ${
-      isOpen ? "open" : ""
-    }`}
-  >
-    <NavLink
-      to="/"
-      className="flex flex-col items-center"
-      onClick={toggleSidebar}
-    >
-      <GoHomeFill className="text-[24px] mb-[5px] active:text-[#007890]" />
-      <span>Dashboard</span>
-    </NavLink>
-    <NavLink
-      to="/appointments"
-      className="flex flex-col items-center"
-      onClick={toggleSidebar}
-    >
-      <TbCalendarTime className="text-[24px] mb-[5px] active:text-[#007890]" />
-      <span>Appointments</span>
-    </NavLink>
-    <NavLink
-      to="/Doctors"
-      className="flex flex-col items-center"
-      onClick={toggleSidebar}
-    >
-      <LuStethoscope className="text-[24px] mb-[5px] active:text-[#007890]" />
-      <span>Doctors</span>
-    </NavLink>
-    <NavLink
-      to="/Patients"
-      className="flex flex-col items-center"
-      onClick={toggleSidebar}
-    >
-      <MdOutlinePersonOutline className="text-[24px] mb-[5px] active:text-[#007890]" />
-      <span>Patients</span>
-    </NavLink>
-  </div>
-);
+export default function Sidebar() {
+  const data = [
+    {
+      id: 1,
+      title: "home",
+      icon: HomeIcon,
+      path: "/dashboard",
+    },
+    {
+      id: 2,
+      title: "appointments",
+      icon: Appointment,
+      path: "/appointments",
+    },
+    {
+      id: 3,
+      title: "doctor",
+      icon: Patients,
+      path: "/doctor",
+    },
+    {
+      id: 4,
+      title: "patients",
+      icon: Patients,
+      path: "/patients",
+    },
+  ];
 
-export default Sidebar;
-
-// src/components/Sidebar.js
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-
-// const Sidebar = () => {
-//   return (
-//     <div className="sidebar">
-//       <ul>
-//         <li><Link to="/dashboard">Dashboard</Link></li>
-//         <li><Link to="/appointments">Appointments</Link></li>
-//         <li><Link to="/doctors">Doctors</Link></li>
-//       </ul>
-//     </div>
-//   );
-// };
-
-// export default Sidebar;
+  const location = useLocation();
+  return (
+    <aside className="bg-white border-[#F9F9F9] border-[2px] py-8 px-5 hidden lg:flex flex-col">
+      <div className="flex flex-col gap-y-2 font-figtree text-[#001534]">
+        {data.map((Nvl, index) => (
+          <div className="w-full" key={index}>
+            <NavLink
+              to={Nvl.path}
+              className={({ isActive }) =>
+                isActive ? "text-primary" : "text-[#001534]"
+              }
+            >
+              <div className="flex items-center gap-4 p-3">
+                <Nvl.icon
+                  fill={location === Nvl.path ? "#1864FF" : "#001534"}
+                />
+                <p
+                  className={`text-[16px] leading-[18px] text-inherit font-bold`}
+                >
+                  {Nvl.title}
+                </p>
+              </div>
+            </NavLink>
+          </div>
+        ))}
+      </div>
+      <div className="mt-auto">
+        <button className="cursor-pointer flex p-3 gap-[12px] items-center bg-[#1864FF12] rounded-[10px] w-full justify-between">
+          <div className="flex items-center gap-x-[12px]">
+            <Link to="/creator">
+              <p className="font-jakarta text-[16px] font-bold leading-[20.16px] text-[#1864ff]">
+                view page
+              </p>
+            </Link>
+          </div>
+        </button>
+      </div>
+    </aside>
+  );
+}
