@@ -4,7 +4,7 @@ export const AppointmentsNav = () => {
   const { pathname } = useLocation();
   console.log(pathname);
   return (
-    <nav className=" grid grid-cols-4 place-items-center">
+    <nav className=" grid grid-cols-4 bg-white place-items-center">
       <Link
         className={`py-[22.5px] w-full flex justify-center items-center ${
           pathname === "/appointments"

@@ -33,7 +33,7 @@ export default function Sidebar() {
 
   const location = useLocation();
   return (
-    <aside className="bg-white h-[calc(100vh-65px)] top-[10vh] w-[132px] fixed left-0 border-[#F9F9F9] border-[2px] py-8 px-5 flex flex-col">
+    <aside className="bg-white h-[calc(100vh-65px)] top-[10vh] w-[132px] fixed left-0 border-[#F9F9F9] border-[2px] pt-[104px] spx-5 flex flex-col">
       <div className="flex flex-col gap-y-2 text-[#001534]">
         {data.map((nvl, index) => (
           <div className="w-full" key={index}>

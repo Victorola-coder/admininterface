@@ -92,7 +92,7 @@ export const TabCards = ({ image, value, text, className }) => {
       style={{
         boxShadow: "0.5px 0.5px 4px 0px  rgba(0,0,0,0.1)",
       }}
-      className={` flex ]  items-center  gap-3 px-[30px] py-[25px]  bg-white rounded-[10px] ${
+      className={` flex  items-center  gap-3 px-[30px] py-[25px]  bg-white rounded-[10px] ${
         className ? className : "w-[420px] h-[140px "
       } `}
     >
