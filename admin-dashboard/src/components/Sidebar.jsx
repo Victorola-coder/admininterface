@@ -1,6 +1,7 @@
 import { useLocation, NavLink } from "react-router-dom";
 import { HomeIcon, Appointment, Patients } from "./svgs";
 import clsx from "clsx";
+import Doctors from "../../public/images/seth.png";
 
 export default function Sidebar() {
   const data = [
@@ -19,7 +20,7 @@ export default function Sidebar() {
     {
       id: 3,
       title: "doctor",
-      icon: Patients,
+      icon: Doctors,
       path: "/doctors",
     },
     {
@@ -43,9 +44,7 @@ export default function Sidebar() {
               }
             >
               <div className="flex flex-col items-center gap-4 p-3">
-                <nvl.icon
-                  fill={location === nvl.path ? "#858585" : "#007890"}
-                />
+                <nvl.icon fill={location === nvl.path ? "#" : ""} />
                 <p
                   className={clsx(
                     "text-[14px] capitalize leading-[16.8px] text-inherit"
