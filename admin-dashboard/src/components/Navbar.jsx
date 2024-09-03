@@ -3,7 +3,7 @@ import { Logo } from "./svgs";
 // import "./Navbar.css";
 
 const Navbar = () => (
-  <header className="bg-[#00B4D8] py-[16px] px-[40px]">
+  <header className="bg-[#00B4D8] fixed top-0 left-0 w-full h-[65px] py-[16px] px-[40px]">
     <nav className="flex flex-row items-center justify-between">
       <figure>
         <Logo />

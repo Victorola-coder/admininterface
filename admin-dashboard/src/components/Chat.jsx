@@ -10,7 +10,7 @@ import { Dashboard } from "../layouts";
 export const Chat = () => {
   return (
     <Dashboard>
-      <section className=" flex-1 py-[44px] px-[34px] ">
+      <section className="  w-full pt-[79px] px-[34px] ">
         <h1 className=" mb-3 text-[#0E0E0E] text-[32px] font-medium leading-[120%]">
           Welcome, Admin
         </h1>
