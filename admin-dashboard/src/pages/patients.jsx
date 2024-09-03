@@ -4,7 +4,6 @@ import d1 from "../../public/d2.svg";
 import del from "../../public/del.svg";
 import edit from "../../public/edit.svg";
 import view from "../../public/view.svg";
-import doctor from "../../public/doctor.svg";
 import { BiPlus } from "react-icons/bi";
 export default function Patients() {
   return (
