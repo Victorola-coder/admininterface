@@ -8,7 +8,7 @@ export default function Sidebar() {
       id: 1,
       title: "home",
       icon: HomeIcon,
-      path: "/dashboard",
+      path: "/",
     },
     {
       id: 2,
@@ -39,7 +39,7 @@ export default function Sidebar() {
             <NavLink
               to={nvl.path}
               className={({ isActive }) =>
-                isActive ? "text-primary" : "text-[#001534]"
+                isActive ? "text-[#007890]" : "text-[#858585]"
               }
             >
               <div className="flex flex-col items-center gap-4 p-3">
@@ -48,8 +48,7 @@ export default function Sidebar() {
                 />
                 <p
                   className={clsx(
-                    location === nvl.path ? "#858585" : "#007890",
-                    "text-[14px] leading-[16.8px] text-inherit"
+                    "text-[14px] capitalize leading-[16.8px] text-inherit"
                   )}
                 >
                   {nvl.title}

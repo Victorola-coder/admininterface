@@ -7,7 +7,7 @@ export default function Dashboard({ children }) {
       <Navbar />
       <div className="flex flex-row overflow-x-hidden w-full min-h-[100vh] bg-[#fcfcfc]">
         <Sidebar />
-        <main className="bg-[#F5F5F5] text-[#1E1E2D] px-[32px] py-[32px]">
+        <main className="bg-[#F5F5F5] w-full text-[#1E1E2D] px-[32px] py-[32px]">
           {children}
         </main>
       </div>
