@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { AppointmentsNav } from "../components/appointementrsnav";
+import CustomStatus from "../components/customstatus";
 import { Dashboard } from "../layouts";
 import AppointmentsLayout from "../layouts/appointmentlayout";
 
-const appointments = () => {
+const ApprovedAppointments = () => {
   return (
     <Dashboard>
       <AppointmentsLayout>
@@ -27,9 +28,7 @@ const appointments = () => {
               <span>Monday 24 October</span>
               <span>9:00 am - 10:00 am</span>
               <span>Purpose</span>
-              <button className=" py-[5px] border-[#F6B95E] rounded-[8px] border-[1.5px] text-[#F6B95E] px-[21px] bg-opacity-10 bg-[#F6B95E]">
-                Pending
-              </button>
+              <CustomStatus status="approved" />
             </div>
           ))}
         </div>
@@ -38,4 +37,4 @@ const appointments = () => {
   );
 };
 
-export default appointments;
+export default ApprovedAppointments;
