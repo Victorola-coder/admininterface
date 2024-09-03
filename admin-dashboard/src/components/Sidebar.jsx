@@ -1,7 +1,7 @@
 import { useLocation, NavLink } from "react-router-dom";
 import { HomeIcon, Appointment, Patients } from "./svgs";
 import clsx from "clsx";
-import Doctors from "../../public/images/seth.png";
+// import Doctors from "../../public/images/seth.svg";
 
 export default function Sidebar() {
   const data = [
@@ -20,7 +20,7 @@ export default function Sidebar() {
     {
       id: 3,
       title: "doctor",
-      icon: Doctors,
+      icon: Patients,
       path: "/doctors",
     },
     {
