@@ -1,6 +1,7 @@
 import { useLocation, NavLink } from "react-router-dom";
 import { HomeIcon, Appointment, Patients } from "./svgs";
 import clsx from "clsx";
+// import Doctors from "../../public/images/seth.svg";
 
 export default function Sidebar() {
   const data = [
@@ -43,9 +44,7 @@ export default function Sidebar() {
               }
             >
               <div className="flex flex-col items-center gap-4 p-3">
-                <nvl.icon
-                  fill={location === nvl.path ? "#858585" : "#007890"}
-                />
+                <nvl.icon fill={location === nvl.path ? "#" : ""} />
                 <p
                   className={clsx(
                     "text-[14px] capitalize leading-[16.8px] text-inherit"
