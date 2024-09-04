@@ -53,7 +53,7 @@ export default function Doctors() {
           <h1 className=" text-center text-[24px]  leading-[120%]  mb-[52px]  font-medium">
             Add Doctor
           </h1>
-          <div className="grid place-items-center w-fit mx-auto gap-8 grid-cols-2">
+          <div className="grid place-items-center w-full  lg:w-fit mx-auto gap-8 grid-cols-1 lg:grid-cols-2">
             <Custominput
               field="Full Name"
               placeholder="Enter Full Name"
@@ -82,7 +82,7 @@ export default function Doctors() {
               placeholder="Enter Address"
               type="text"
             />
-            <div className=" w-full">
+            <div className=" w-full px-5 lg:px-0">
               <p className=" text-[16px]  font-medium text-[#0E0E0E]">
                 Days Available
               </p>
@@ -100,7 +100,7 @@ export default function Doctors() {
                 ))}
               </div>
             </div>
-            <div className=" w-full">
+            <div className=" w-full px-5 lg:px-0">
               <p className=" text-[16px]  font-medium text-[#0E0E0E]">
                 Time Available
               </p>
@@ -120,7 +120,7 @@ export default function Doctors() {
             </div>
           </div>
 
-          <button className=" w-[440px] font-semibold  text-[16px]  rounded-[5px]  bg-[#00B4D8] flex justify-center items-center mt-[52px] mx-auto text-center text-white h-[56px]">
+          <button className=" w-[90%] lg:w-[440px] font-semibold  text-[16px]  rounded-[5px]  bg-[#00B4D8] flex justify-center items-center mt-[52px] mx-auto text-center text-white h-[56px]">
             Register
           </button>
         </div>
@@ -133,32 +133,31 @@ export default function Doctors() {
         <h1 className=" mb-3  text-[#0E0E0E] text-[32px] font-medium leading-[120%]">
           Manage Doctors
         </h1>
-        <div className="flex  gap-[45px] ">
+        <div className="flex flex-col lg:flex-row gap-[20px] lg:gap-[45px]">
           <div
             style={{
-              boxShadow: "0.5px 0.5px 4px 0px  rgba(0,0,0,0.1)",
+              boxShadow: "0.5px 0.5px 4px 0px rgba(0,0,0,0.1)",
             }}
-            className={` flex  items-center w-fit   px-[30px] py-[25px] flex-col gap-6 bg-white rounded-[10px]  `}
+            className="flex items-center w-full lg:w-fit px-[20px] sm:px-[30px] py-[20px] sm:py-[25px] flex-col gap-4 sm:gap-6 bg-white rounded-[10px]"
           >
-            <div className="flex gap-6 items-center">
+            <div className="flex gap-4 sm:gap-6 items-center">
               <img
-                className={`  size-[90px]
-          rounded-full object-contain`}
+                className="w-[70px] sm:w-[90px] h-[70px] sm:h-[90px] rounded-full object-contain"
                 src={d1}
                 alt=""
               />
-              <div className="flex  flex-col">
-                <p className=" text-[32px]  leading-[120%] font-medium text-[#0E0E0E]">
+              <div className="flex flex-col">
+                <p className="text-[24px] sm:text-[32px] leading-[120%] font-medium text-[#0E0E0E]">
                   13
                 </p>
-                <p className=" text-[18px] text-nowrap  leading-[150%] font-normal text-[#6D6D6D]">
+                <p className="text-[14px] sm:text-[18px] leading-[150%] font-normal text-[#6D6D6D]">
                   Doctors Registered
                 </p>
               </div>
             </div>
             <button
               onClick={() => setFormInput(true)}
-              className=" bg-[#00B4D8] gap-2.5  rounded-[5px] flex text-white px-3 py-2 items-center"
+              className="bg-[#00B4D8] gap-2.5 rounded-[5px] flex text-white px-3 py-2 items-center"
             >
               Add Doctor
               <BiPlus color="white" size={12} />
@@ -166,40 +165,40 @@ export default function Doctors() {
           </div>
           <div
             style={{
-              boxShadow: "0.5px 0.5px 4px 0px  rgba(0,0,0,0.1)",
+              boxShadow: "0.5px 0.5px 4px 0px rgba(0,0,0,0.1)",
             }}
-            className={` flex  items-center w-fit   px-[30px] py-[25px] flex-col gap-6 bg-white rounded-[10px]  `}
+            className="flex items-center w-full lg:w-fit px-[20px] sm:px-[30px] py-[20px] sm:py-[25px] flex-col gap-4 sm:gap-6 bg-white rounded-[10px]"
           >
-            <div className="flex gap-6 items-center">
+            <div className="flex gap-4 sm:gap-6 items-center">
               <img
-                className={`  size-[90px]
-          rounded-full object-contain`}
+                className="w-[70px] sm:w-[90px] h-[70px] sm:h-[90px] rounded-full object-contain"
                 src={doctor}
                 alt=""
               />
-              <div className="flex flex-col gap-[21.5px]">
-                <div className="flex   items-center gap-4">
-                  <p className=" text-[32px]  leading-[120%] font-medium text-[#0E0E0E]">
+              <div className="flex flex-col gap-[15px] sm:gap-[21.5px]">
+                <div className="flex items-center gap-4">
+                  <p className="text-[24px] sm:text-[32px] leading-[120%] font-medium text-[#0E0E0E]">
                     13
                   </p>
-                  <p className=" text-[18px] text-nowrap  leading-[150%] font-normal text-[#6D6D6D]">
+                  <p className="text-[14px] sm:text-[18px] leading-[150%] font-normal text-[#6D6D6D]">
                     Doctors Registered
                   </p>
                 </div>
 
-                <div className="flex   items-center gap-4">
-                  <p className=" text-[32px]  leading-[120%] font-medium text-[#0E0E0E]">
+                <div className="flex items-center gap-4">
+                  <p className="text-[24px] sm:text-[32px] leading-[120%] font-medium text-[#0E0E0E]">
                     13
                   </p>
-                  <p className=" text-[18px] text-nowrap  leading-[150%] font-normal text-[#6D6D6D]">
+                  <p className="text-[14px] sm:text-[18px] leading-[150%] font-normal text-[#6D6D6D]">
                     Doctors Registered
                   </p>
                 </div>
-                <div className="flex   items-center gap-4">
-                  <p className=" text-[32px]  leading-[120%] font-medium text-[#0E0E0E]">
+
+                <div className="flex items-center gap-4">
+                  <p className="text-[24px] sm:text-[32px] leading-[120%] font-medium text-[#0E0E0E]">
                     13
                   </p>
-                  <p className=" text-[18px] text-nowrap  leading-[150%] font-normal text-[#6D6D6D]">
+                  <p className="text-[14px] sm:text-[18px] leading-[150%] font-normal text-[#6D6D6D]">
                     Doctors Registered
                   </p>
                 </div>
@@ -215,39 +214,50 @@ export default function Doctors() {
           <p className=" text-[18px]  font-medium text-[#007890]">View All</p>
         </div>
         {/* table from shad will replace  */}
-        <table className="w-full mt-2 mb-4  text-[#858585] font-medium">
-          <thead className="">
-            <tr className="text-[18px] pb-4   h-[60px] leading-[150%]">
-              <th className="text-left">S/N</th>
-              <th className="text-left">Name</th>
-              <th className="text-left">Specialty</th>
-              <th className="text-left">Medical ID</th>
-              <th className="text-left">Phone Number</th>
-              <th className="text-left">Email</th>
-              <th className="text-left">Action</th>
-            </tr>
-          </thead>
-          <tbody className="text-[16px] leading-[150%] text-[#0E0E0E]">
-            {[1, 2, 3, 4].map((index) => (
-              <tr
-                className="border-t border-[#CECECE] spy-7 h-[61px]"
-                key={index}
-              >
-                <td>{index}</td>
-                <td>Martin Okechukwu</td>
-                <td>Dr. Okechukwu</td>
-                <td>Monday 24 October</td>
-                <td>9:00 am - 10:00 am</td>
-                <td>okeymartin@gmail.com</td>
-                <td className="flex items-center  h-[61px] gap-3.5">
-                  <img src={del} className="size-[35px]" alt="Delete" />
-                  <img src={edit} className="size-[35px]" alt="Edit" />
-                  <img src={view} className="size-[35px]" alt="View" />
-                </td>
+        <div className=" overflow-x-auto">
+          <table className="w-full min-w-[900px]  mt-2 mb-4 text-[#858585] font-medium">
+            <thead>
+              <tr className="text-[14px]  sm:text-[16px] md:text-[18px] pb-4 h-[60px] leading-[150%]">
+                <th className="text-left">S/N</th>
+                <th className="text-left">Name</th>
+                <th className="text-left">Specialty</th>
+                <th className="text-left">Medical ID</th>
+                <th className="text-left">Phone Number</th>
+                <th className="text-left">Email</th>
+                <th className="text-left">Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="text-[12px] sm:text-[14px] md:text-[16px] leading-[150%] text-[#0E0E0E]">
+              {[1, 2, 3, 4].map((index) => (
+                <tr className="border-t border-[#CECECE] h-[61px]" key={index}>
+                  <td>{index}</td>
+                  <td className="whitespace-normal">Martin Okechukwu</td>
+                  <td className="whitespace-normal">Dr. Okechukwu</td>
+                  <td className="whitespace-normal">Monday 24 October</td>
+                  <td className="whitespace-normal">9:00 am - 10:00 am</td>
+                  <td className="whitespace-normal">okeymartin@gmail.com</td>
+                  <td className="flex items-center h-[61px] gap-3.5">
+                    <img
+                      src={del}
+                      className="w-[25px] h-[25px] md:w-[35px] md:h-[35px]"
+                      alt="Delete"
+                    />
+                    <img
+                      src={edit}
+                      className="w-[25px] h-[25px] md:w-[35px] md:h-[35px]"
+                      alt="Edit"
+                    />
+                    <img
+                      src={view}
+                      className="w-[25px] h-[25px] md:w-[35px] md:h-[35px]"
+                      alt="View"
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </Dashboard>
   );

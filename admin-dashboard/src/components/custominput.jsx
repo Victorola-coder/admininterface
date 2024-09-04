@@ -4,7 +4,7 @@ import React from "react";
 
 const Custominput = ({ field, type, placeholder, dropdownvalue }) => {
   return (
-    <fieldset className=" flex flex-col">
+    <fieldset className=" flex w-[90%] lg:w-auto flex-col">
       <label
         className=" text-[#0E0E0E] text-[16px]  leading-[150%] mb-3"
         htmlFor={field.replace(" ", "_")}
@@ -13,7 +13,7 @@ const Custominput = ({ field, type, placeholder, dropdownvalue }) => {
       </label>
       {type === "dropdown" ? (
         <select
-          className=" w-[440px] px-5 py-[18px] h-[60px] placeholder:text-[16px] text-[#B1B1B1]  placeholder:leading-[150%] rounded-[10px]  border border-[#B1B1B1]"
+          className=" w-full lg:w-[440px] px-5 py-[18px] h-[60px] placeholder:text-[16px] text-[#B1B1B1]  placeholder:leading-[150%] rounded-[10px]  border border-[#B1B1B1]"
           name=""
           id=""
         >
@@ -24,7 +24,7 @@ const Custominput = ({ field, type, placeholder, dropdownvalue }) => {
         </select>
       ) : (
         <input
-          className=" w-[440px] px-5 py-[18px] h-[60px] placeholder:text-[16px] text-[#B1B1B1]  placeholder:leading-[150%] rounded-[10px]  border border-[#B1B1B1]"
+          className=" w-full lg:w-[440px] px-5 py-[18px] h-[60px] placeholder:text-[16px] text-[#B1B1B1]  placeholder:leading-[150%] rounded-[10px]  border border-[#B1B1B1]"
           type={type}
           name={field}
           placeholder={placeholder}
