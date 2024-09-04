@@ -2,7 +2,7 @@ import { useLocation, NavLink } from "react-router-dom";
 import { HomeIcon, Appointment, Patients } from "./svgs";
 import clsx from "clsx";
 import { BiMenu } from "react-icons/bi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CgClose } from "react-icons/cg";
 // import Doctors from "../../images/seth.svg";
 
@@ -34,19 +34,28 @@ export default function Sidebar() {
     },
   ];
 
-  const location = useLocation();
+  const { pathname } = useLocation();
+  const [menuPosition, setMenuPosition] = useState(false);
+  useEffect(() => {
+    let changePosition;
+    changePosition = pathname.includes("/appointments");
+    setMenuPosition(changePosition);
+  }, [menuPosition, pathname]);
+  console.log(menuPosition);
   const [navOpen, setNavOpen] = useState(false);
   return (
     <>
       {navOpen ? (
         <CgClose
           onClick={() => setNavOpen(false)}
-          className=" lg:hidden z-50 fixed left-12 cursor-pointer  top-[12vh] size-8"
+          className=" lg:hidden  z-50 fixed left-12 cursor-pointer  top-[12vh] size-8"
         />
       ) : (
         <BiMenu
           onClick={() => setNavOpen(true)}
-          className=" lg:hidden fixed left-3 cursor-pointer  top-[12vh] size-10"
+          className={` ${
+            menuPosition && " top-4 left-2"
+          } lg:hidden bg-white fixed left-3 cursor-pointer  top-[12vh] size-8`}
         />
       )}
       <aside className=" hidden  bg-white h-[calc(100vh-65px)] top-[10vh] w-[132px] fixed left-0 border-[#F9F9F9] border-[2px] pt-[104px] spx-5 lg:flex flex-col">
