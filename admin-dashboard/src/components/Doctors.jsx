@@ -1,28 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Sidebar from './Sidebar';
-
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Sidebar from "./Sidebar";
 
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
   const [doctorData, setDoctorData] = useState({
-    fullName: '',
-    email: '',
-    phoneNumber: '',
-    medicalId: '',
-    specialty: '',
-    address: '',
+    fullName: "",
+    email: "",
+    phoneNumber: "",
+    medicalId: "",
+    specialty: "",
+    address: "",
   });
-  
+
   const stats = { doctors: doctors.length };
 
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const result = await axios.get('https://doctermy.onrender.com/api/v1/doctors');
+        const result = await axios.get(
+          "https://doctermy.onrender.com/api/v1/doctors"
+        );
         setDoctors(result.data);
       } catch (error) {
-        console.error('Error fetching doctors:', error);
+        console.error("Error fetching doctors:", error);
       }
     };
 
@@ -39,27 +41,39 @@ const Doctors = () => {
 
   const handleAddDoctor = async () => {
     try {
-      const result = await axios.post('https://doctermy.onrender.com/api/v1/users?role=Doctor', doctorData);
+      const result = await axios.post(
+        "https://doctermy.onrender.com/api/v1/users?role=Doctor",
+        doctorData
+      );
       setDoctors([...doctors, result.data]);
-      setDoctorData({ fullName: '', email: '', phoneNumber: '', medicalId:'', specialty: '', address: '' });
+      setDoctorData({
+        fullName: "",
+        email: "",
+        phoneNumber: "",
+        medicalId: "",
+        specialty: "",
+        address: "",
+      });
     } catch (error) {
-      console.error('Error adding doctor:', error);
+      console.error("Error adding doctor:", error);
     }
   };
 
   const handleDeleteDoctor = async (id) => {
     try {
-      await axios.delete(`https://doctermy.onrender.com/api/v1/users?role=Doctor{id}`);
+      await axios.delete(
+        `https://doctermy.onrender.com/api/v1/users?role=Doctor{id}`
+      );
       setDoctors(doctors.filter((doctor) => doctor.id !== id));
     } catch (error) {
-      console.error('Error deleting doctor:', error);
+      console.error("Error deleting doctor:", error);
     }
   };
 
   return (
     <div>
       <Sidebar />
-      <div style={{ marginLeft: '220px', padding: '20px' }}>
+      <div style={{ marginLeft: "220px", padding: "20px" }}>
         <h1>Doctors</h1>
         <p>Total Doctors: {stats.doctors}</p>
         <div>
@@ -110,7 +124,10 @@ const Doctors = () => {
         <ul>
           {doctors.map((doctor) => (
             <li key={doctor.id}>
-              {doctor.name} <button onClick={() => handleDeleteDoctor(doctor.id)}>Delete</button>
+              {doctor.name}{" "}
+              <button onClick={() => handleDeleteDoctor(doctor.id)}>
+                Delete
+              </button>
             </li>
           ))}
         </ul>
@@ -120,9 +137,6 @@ const Doctors = () => {
 };
 
 export default Doctors;
-
-
-
 
 // const Doctors = () => {
 //   const [doctors, setDoctors] = useState([]);
@@ -231,5 +245,3 @@ export default Doctors;
 // };
 
 // export default Doctors;
-
-

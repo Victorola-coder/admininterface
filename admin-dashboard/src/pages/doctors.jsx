@@ -7,7 +7,8 @@ import view from "../../public/view.svg";
 import doctor from "../../public/doctor.svg";
 import { BiPlus } from "react-icons/bi";
 import Custominput from "../components/custominput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 export default function Doctors() {
   const timeRanges = [
     "12am - 4am",
@@ -27,9 +28,22 @@ export default function Doctors() {
     "Saturday",
   ];
 
-  console.log(daysOfWeek);
+  const [doctors, setDoctors] = useState([]);
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const result = await axios.get(
+          "https://doctermy.onrender.com/api/v1/doctors"
+        );
+        setDoctors(result.data);
+      } catch (error) {
+        console.error("Error fetching doctors:", error);
+      }
+    };
 
-  console.log(timeRanges);
+    fetchDoctors();
+  }, []);
+  console.log(doctors);
 
   const [formInput, setFormInput] = useState(false);
   if (formInput) {
