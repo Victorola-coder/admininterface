@@ -1,14 +1,14 @@
-import { Dashboard } from "../layouts";
-
-import d1 from "../../public/d1.svg";
-import del from "../../public/del.svg";
-import edit from "../../public/edit.svg";
-import view from "../../public/view.svg";
-import doctor from "../../public/doctor.svg";
-import { BiPlus } from "react-icons/bi";
-import Custominput from "../components/custominput";
-import { useEffect, useState } from "react";
 import axios from "axios";
+import d1 from "/d1.svg";
+import del from "/del.svg";
+import edit from "/edit.svg";
+import view from "/view.svg";
+import doctor from "/doctor.svg";
+import { BiPlus } from "react-icons/bi";
+import { Dashboard } from "../layouts";
+import { useEffect, useState } from "react";
+import Custominput from "../components/custominput";
+
 export default function Doctors() {
   const timeRanges = [
     "12am - 4am",

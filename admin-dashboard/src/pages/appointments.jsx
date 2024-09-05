@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-import { AppointmentsNav } from "../components/appointementrsnav";
 import { Dashboard } from "../layouts";
 import AppointmentsLayout from "../layouts/appointmentlayout";
+import { AppointmentsNav } from "../components/appointementrsnav";
 
 const appointments = () => {
   return (

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-import { AppointmentsNav } from "../components/appointementrsnav";
-import CustomStatus from "../components/customstatus";
 import { Dashboard } from "../layouts";
+import CustomStatus from "../components/customstatus";
+import { AppointmentsNav } from "../components/appointementrsnav";
 import AppointmentsLayout from "../layouts/appointmentlayout";
 
 const DeclinedAppointments = () => {
