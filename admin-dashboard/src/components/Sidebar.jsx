@@ -1,9 +1,9 @@
-import clsx from "clsx";
-import { BiMenu } from "react-icons/bi";
-import { CgClose } from "react-icons/cg";
-import { useEffect, useState } from "react";
 import { useLocation, NavLink } from "react-router-dom";
 import { HomeIcon, Appointment, Patients } from "./svgs";
+import clsx from "clsx";
+import { BiMenu } from "react-icons/bi";
+import { useEffect, useState } from "react";
+import { CgClose } from "react-icons/cg";
 // import Doctors from "../../images/seth.svg";
 
 export default function Sidebar() {

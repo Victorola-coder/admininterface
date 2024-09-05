@@ -1,5 +1,5 @@
-import { Logo } from "./svgs";
 import { FaSearch, FaBell, FaUser } from "react-icons/fa";
+import { Logo } from "./svgs";
 // import "./Navbar.css";
 
 const Navbar = () => (

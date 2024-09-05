@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Sidebar from "./Sidebar";
-import React, { useEffect, useState } from "react";
 
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);

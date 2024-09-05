@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import d1 from "/d1.svg";
-import d2 from "/d2.svg";
+import d1 from "../../public/d1.svg";
+import d2 from "../../public/d2.svg";
+import recommend from "../../public/recommend.svg";
+import cancel from "../../public/cancel.svg";
+import check_circle from "../../public/check_circle.svg";
+import chronic from "../../public/chronic.svg";
 import { Dashboard } from "../layouts";
-import chronic from "/chronic.svg";
-import cancel from "/images/cancel.svg";
-import recommend from "/images/recommend.svg";
-import check_circle from "/check_circle.svg";
 
 export const Chat = () => {
   return (
@@ -27,25 +27,25 @@ export const Chat = () => {
               image={recommend}
               text="Approved Appointments"
               value={15}
-              className="xl:w-[350px] h-[140px] xl:h-[125px]"
+              className=" xl:w-[350px] h-[140px] xl:h-[125px]"
             />
             <TabCards
               image={cancel}
               text="Completed Appointments"
               value={6}
-              className="xl:w-[350px] h-[140px] xl:h-[125px]"
+              className=" xl:w-[350px] h-[140px] xl:h-[125px]"
             />
             <TabCards
               image={check_circle}
               text="Declined Appointments"
               value={2}
-              className="xl:w-[350px] h-[140px] xl:h-[125px]"
+              className=" xl:w-[350px] h-[140px] xl:h-[125px]"
             />
             <TabCards
               image={chronic}
               text="Pending Appointments"
               value={15}
-              className="xl:w-[350px] h-[140px] xl:h-[125px]"
+              className=" xl:w-[350px] h-[140px] xl:h-[125px]"
             />
           </div>
         </div>

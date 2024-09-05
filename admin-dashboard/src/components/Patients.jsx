@@ -1,6 +1,6 @@
 import axios from "axios";
-import Sidebar from "./Sidebar";
 import { useEffect, useState } from "react";
+import Sidebar from "./Sidebar";
 
 const Patients = () => {
   const [patients, setPatients] = useState([]);
