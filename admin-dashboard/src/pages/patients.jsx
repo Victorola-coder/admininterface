@@ -5,10 +5,46 @@ import del from "../../public/del.svg";
 import edit from "../../public/edit.svg";
 import view from "../../public/view.svg";
 import { BiPlus } from "react-icons/bi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Custominput from "../components/custominput";
+import axios from "axios";
+
 export default function Patients() {
   const [formInput, setFormInput] = useState(false);
+  const [patients, setPatients] = useState([]);
+  const [patientData, setPatientData] = useState({
+    name: "",
+    email: "",
+    medicalID: "",
+    gender: "",
+    phoneNumber: "",
+    dob: "",
+    address: "",
+  });
+
+  const handleSubmit = () => {
+    const fetchPatients = async () => {
+      try {
+        const result = await axios.get(
+          "https://doctermy.onrender.com/api/v1/patients"
+        );
+        setPatients(result.data);
+      } catch (error) {
+        console.error("Error fetching patients:", error);
+      }
+    };
+
+    fetchPatients();
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setPatientData({
+      ...patientData,
+      [name]: value,
+    });
+  };
+
   if (formInput) {
     return (
       <Dashboard>
@@ -16,41 +52,62 @@ export default function Patients() {
           <h1 className=" text-center text-[24px]  leading-[120%]  mb-[52px]  font-medium">
             Add Patient
           </h1>
-          <div className="grid place-items-center w-fit mx-auto gap-8 grid-cols-1 lg:grid-cols-2">
+          <form
+            onSubmit={handleSubmit}
+            className="grid place-items-center w-fit mx-auto gap-8 grid-cols-1 lg:grid-cols-2"
+          >
             <Custominput
-              field="Full Name"
+              value={patientData.name}
+              field=""
+              onChange={handleInputChange}
               placeholder="Enter Full Name"
               type="text"
             />
             <Custominput
-              field="Medical ID"
-              placeholder="Enter Medical Id"
               type="text"
+              field="medicalID"
+              value={patientData.medicalID}
+              onChange={handleInputChange}
+              placeholder="Enter Medical Id"
             />
-            <Custominput field="Email" placeholder="Enter Email" type="email" />
             <Custominput
-              field="Gender"
-              placeholder="Enter Gender"
+              type="email"
+              field="email"
+              onChange={handleInputChange}
+              value={patientData.email}
+              placeholder="Enter Email"
+            />
+            <Custominput
               type="dropdown"
+              field="gender"
+              value={patientData.gender}
+              onChange={handleInputChange}
+              placeholder="Enter Gender"
               dropdownvalue={["Male", "Female"]}
             />
             <Custominput
               field="Phone Number"
-              placeholder="Enter Phone Number"
               type="number"
+              onChange={handleInputChange}
+              value={patientData.phoneNumber}
+              placeholder="Enter Phone Number"
             />
             <Custominput
               field="Date Of Birth"
               placeholder="DD/MM/YYYY"
               type="date"
+              onChange={handleInputChange}
+              value={patientData.dob}
             />
             <Custominput
               field="Address"
               placeholder="Enter Address"
               type="text"
+              value={patientData.address}
+              onChange={handleInputChange}
             />
-          </div>
-          <button className=" w-[90%] lg:w-[440px] font-semibold  text-[16px]  rounded-[5px]  bg-[#00B4D8] flex justify-center items-center mt-[52px] mx-auto text-center text-white h-[56px]">
+          </form>
+          <button className="w-[90%] lg:w-[440px] font-semibold  text-[16px]  rounded-[5px]  bg-[#00B4D8] flex justify-center items-center mt-[52px] mx-auto text-center text-white h-[56px]">
             Register
           </button>
         </div>
