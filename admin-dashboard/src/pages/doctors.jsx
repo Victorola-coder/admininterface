@@ -27,7 +27,7 @@ export default function Doctors() {
     data,
     error: doctorsErr,
     isLoading,
-  } = useFetch(BASE_URL + "users?role=Doctor", "doctors");
+  } = useFetch(BASE_URL + "users?role=Doctor", "users");
 
   // Use optional chaining (?.) to safely access nested properties
   const doctors = data?.data || [];
@@ -35,12 +35,12 @@ export default function Doctors() {
   const { mutate, postData, error } = useAddData(
     BASE_URL + "auth/create-doctors",
 
-    "doctors"
+    "users"
   );
   //console.log(isLoading, doctors);
   const { mutate: deleteData, error: deleteError } = useDeleteData(
     BASE_URL + "users",
-    "doctors"
+    "users"
   );
 
   // console.log(doctors);
