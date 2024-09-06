@@ -12,9 +12,10 @@ const CompletedAppointments = () => {
     data,
     error: doctorsErr,
     isLoading,
-  } = useFetch(BASE_URL + "appointment?status=Declined", "appointments");
+  } = useFetch(BASE_URL + "appointment?status=Completed", "appointments");
   // console.log(data);
   const appointments = data?.data || [];
+
   return (
     <Dashboard>
       <AppointmentsLayout>

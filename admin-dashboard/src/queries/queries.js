@@ -1,17 +1,18 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import axios from '../config/axios'
 import { useDoctorStore } from "../store/doctorstore";
+import { BASE_URL } from "../config";
 
 
 export const useFetch = (url, key) => {
-    const setDoctors = useDoctorStore((state) => state.setDoctors);
+    // const setDoctors = useDoctorStore((state) => state.setDoctors);
   
     const { data, isLoading, isError, error } = useQuery({
       queryKey: [key],
       queryFn: async () => {
         const response = await axios.get(url);
         // console.log('Data fetched successfully:', data);
-        setDoctors(response.data.data);
+        // setDoctors(response.data.data);
         return response.data;
       },
      
@@ -37,6 +38,36 @@ export const useAddData =(url,key) => {
 
     return { mutate,error ,postData}
 }
+export const useFetchPatients = () => {
+    return useQuery({
+      queryKey: ["patients"],
+      queryFn: async () => {
+        const response = await axios.get(`${BASE_URL}users?role=Patient`);
+        return response.data;
+      },
+    });
+  };
+
+export const useFetchDoctors = () => {
+  return useQuery({
+    queryKey: ["doctors"],
+    queryFn: async () => {
+      const response = await axios.get(`${BASE_URL}users?role=Doctor`);
+      return response.data;
+    },
+  });
+};
+
+export const useFetchAppointments = () => {
+  return useQuery({
+    queryKey: ["appointments"],
+    queryFn: async () => {
+      const response = await axios.get(`${BASE_URL}appointments`);
+      return response.data;
+    },
+  });
+};
+
 export const useDeleteData = (url, key) => {
     const queryClient = useQueryClient();
     const removeDoctor = useDoctorStore((state) => state.removeDoctor);

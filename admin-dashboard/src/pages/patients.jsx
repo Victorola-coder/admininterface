@@ -7,17 +7,17 @@ import view from "../../public/view.svg";
 import { BiPlus } from "react-icons/bi";
 import { useState } from "react";
 import Custominput from "../components/custominput";
-import { useAddData, useDeleteData, useFetch } from "../queries/queries";
+import {
+  useAddData,
+  useDeleteData,
+  useFetch,
+  useFetchPatients,
+} from "../queries/queries";
 import { BASE_URL } from "../config";
 
 export default function Patients() {
-  const {
-    data,
-    error: patientsErr,
-    isLoading,
-  } = useFetch(BASE_URL + "users?role=Patient", "users");
-  const patients = data?.data || [];
-
+  const { data: pat, error: patientsErr, isLoading } = useFetchPatients();
+  const patients = pat?.data || [];
   const [patientData, setPatientData] = useState({
     name: "",
     email: "",

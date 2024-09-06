@@ -10,7 +10,12 @@ import { BiPlus } from "react-icons/bi";
 import Custominput from "../components/custominput";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useAddData, useDeleteData, useFetch } from "../queries/queries";
+import {
+  useAddData,
+  useDeleteData,
+  useFetch,
+  useFetchDoctors,
+} from "../queries/queries";
 import { BASE_URL } from "../config";
 export default function Doctors() {
   const [doctorData, setDoctorData] = useState({
@@ -23,14 +28,10 @@ export default function Doctors() {
     availableDays: [],
     availableTime: [],
   });
-  const {
-    data,
-    error: doctorsErr,
-    isLoading,
-  } = useFetch(BASE_URL + "users?role=Doctor", "users");
+  const { data: doc, error: patientsErr, isLoading } = useFetchDoctors();
 
   // Use optional chaining (?.) to safely access nested properties
-  const doctors = data?.data || [];
+  const doctors = doc?.data || [];
 
   const { mutate, postData, error } = useAddData(
     BASE_URL + "auth/create-doctors",

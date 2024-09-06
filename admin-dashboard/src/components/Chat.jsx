@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import d1 from "../../public/d1.svg";
 import d2 from "../../public/d2.svg";
@@ -6,8 +7,45 @@ import cancel from "../../public/cancel.svg";
 import check_circle from "../../public/check_circle.svg";
 import chronic from "../../public/chronic.svg";
 import { Dashboard } from "../layouts";
+import { useDoctorStore } from "../store/doctorstore";
+import { BASE_URL } from "../config";
+import {
+  useFetch,
+  useFetchDoctors,
+  useFetchPatients,
+} from "../queries/queries";
 
 export const Chat = () => {
+  const { data: doc } = useFetchDoctors();
+  const { data: pat } = useFetchPatients();
+  const doctors = doc?.data || [];
+  const patients = pat?.data || [];
+  const {
+    data: approved,
+    error: doctorsErr,
+    isLoading,
+  } = useFetch(BASE_URL + "appointment?status=Approved", "approved");
+  const appointments = approved?.data || [];
+  const { data: Declined } = useFetch(
+    BASE_URL + "appointment?status=Declined",
+    "Declined"
+  );
+  const DeclinedData = Declined?.data || [];
+  const { data: Pending } = useFetch(
+    BASE_URL + "appointment?status=Pending",
+    "Pending"
+  );
+  const PendingData = Pending?.data || [];
+  const { data: Complete } = useFetch(
+    BASE_URL + "appointment?status=Completed",
+    "Complete"
+  );
+  const CompleteData = Complete?.data || [];
+  const { data: Approve } = useFetch(
+    BASE_URL + "appointment?status=Approved",
+    "Approve"
+  );
+  const ApprovedData = Approve?.data || [];
   return (
     <Dashboard>
       <section className="w-full pt-[79px] px-[20px] xl:px-[34px]">
@@ -19,32 +57,40 @@ export const Chat = () => {
         </p>
         <div className="flex flex-col xl:flex-row xl:items-center gap-6 w-full xl:space-x-[41px]">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 gap-6 w-full xl:w-fit">
-            <TabCards image={d1} text="Doctors Registered" value={13} />
-            <TabCards image={d2} text="Patients Registered" value={52} />
+            <TabCards
+              image={d1}
+              text="Doctors Registered"
+              value={doctors?.length}
+            />
+            <TabCards
+              image={d2}
+              text="Patients Registered"
+              value={patients?.length}
+            />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-6 w-full xl:w-fit">
             <TabCards
               image={recommend}
               text="Approved Appointments"
-              value={15}
+              value={ApprovedData?.length}
               className=" xl:w-[350px] h-[140px] xl:h-[125px]"
             />
             <TabCards
               image={cancel}
               text="Completed Appointments"
-              value={6}
+              value={CompleteData?.length}
               className=" xl:w-[350px] h-[140px] xl:h-[125px]"
             />
             <TabCards
               image={check_circle}
               text="Declined Appointments"
-              value={2}
+              value={DeclinedData?.length}
               className=" xl:w-[350px] h-[140px] xl:h-[125px]"
             />
             <TabCards
               image={chronic}
               text="Pending Appointments"
-              value={15}
+              value={PendingData?.length}
               className=" xl:w-[350px] h-[140px] xl:h-[125px]"
             />
           </div>

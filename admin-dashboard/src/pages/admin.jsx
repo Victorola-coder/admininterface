@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
 import { Dashboard } from "../layouts";
+import { useDoctorStore } from "../store/doctorstore";
 
 export default function Home() {
+  const { doctors } = useDoctorStore();
   return (
     <Dashboard>
       <div>
@@ -12,7 +14,11 @@ export default function Home() {
           Total of 15 appointments today.
         </p>
         <div className="mt-10 flex flex-row items-start flex-1 flex-wrap gap-10">
-          <CARDS body="Doctors Registered" img="/images/seth.svg" title="13" />
+          <CARDS
+            body="Doctors Registered"
+            img="/images/seth.svg"
+            title={doctors?.length}
+          />
           <CARDS body="Doctors Registered" img="/images/seth.svg" title="13" />
           <CARDS body="Doctors Registered" img="/images/seth.svg" title="13" />
           <CARDS body="Doctors Registered" img="/images/seth.svg" title="13" />
