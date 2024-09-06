@@ -11,6 +11,7 @@ import { useDoctorStore } from "../store/doctorstore";
 import { BASE_URL } from "../config";
 import {
   useFetch,
+  useFetchAppointments,
   useFetchApprovedAppointments,
   useFetchCompletedAppointments,
   useFetchDeclinedAppointments,
@@ -33,6 +34,19 @@ export const Chat = () => {
   const CompleteData = Complete?.data || [];
   const { data: Approve } = useFetchApprovedAppointments();
   const ApprovedData = Approve?.data || [];
+
+  const { data } = useFetchAppointments();
+  const array = data?.data || [];
+  // console.log(array);
+
+  const now = new Date(); // Get the current date and time
+
+  const upcomingAppointments = array?.filter((appointment) => {
+    const appointmentDate = new Date(appointment.createdAt); // Convert `createdAt` to Date
+    return appointmentDate > now; // Compare if the appointment is in the future
+  });
+
+  console.log(upcomingAppointments);
   return (
     <Dashboard>
       <section className="w-full pt-[79px] px-[20px] xl:px-[34px]">
@@ -40,7 +54,7 @@ export const Chat = () => {
           Welcome, Admin
         </h1>
         <p className="mb-10 text-[#858585] text-[14px] xl:text-[16px] font-regular leading-[150%]">
-          Total of 15 appointments today.
+          Total of {array?.length} appointments today.
         </p>
         <div className="flex flex-col xl:flex-row xl:items-center gap-6 w-full xl:space-x-[41px]">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 gap-6 w-full xl:w-fit">
@@ -99,18 +113,20 @@ export const Chat = () => {
             <span className="block">Purpose</span>
           </div>
           <div className="min-w-[600px]">
-            {[1, 2, 3, 4].map((index) => (
-              <div
-                className="pt-4 text-[12px] sm:text-[14px] xl:text-[16px] leading-[150%] text-[#0E0E0E] py-7 grid grid-cols-5 gap-x-4 items-center border-t border-[#CECECE]"
-                key={index}
-              >
-                <span>Mr Dike</span>
-                <span>Dr. Okechukwu</span>
-                <span>Monday 24 October</span>
-                <span>9:00 am - 10:00 am</span>
-                <span>Purpose</span>
-              </div>
-            ))}
+            {upcomingAppointments.length === 0
+              ? "No Upcominmg Appointments"
+              : upcomingAppointments?.map((index) => (
+                  <div
+                    className="pt-4 text-[12px] sm:text-[14px] xl:text-[16px] leading-[150%] text-[#0E0E0E] py-7 grid grid-cols-5 gap-x-4 items-center border-t border-[#CECECE]"
+                    key={index}
+                  >
+                    <span>Mr Dike</span>
+                    <span>Dr. Okechukwu</span>
+                    <span>Monday 24 October</span>
+                    <span>9:00 am - 10:00 am</span>
+                    <span>Purpose</span>
+                  </div>
+                ))}
           </div>
         </div>
       </section>

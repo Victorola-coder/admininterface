@@ -60,16 +60,16 @@ export const useFetchDoctors = () => {
 
 export const useFetchAppointments = () => {
   return useQuery({
-    queryKey: ["appointments"],
+    queryKey: ["allappointments"],
     queryFn: async () => {
-      const response = await axios.get(`${BASE_URL}appointments`);
+      const response = await axios.get(`${BASE_URL}appointment`);
       return response.data;
     },
   });
 };
 export const useFetchPendingAppointments = () => {
   return useQuery({
-    queryKey: ["appointments"],
+    queryKey: ["pendingappointments"],
     queryFn: async () => {
       const response = await axios.get(`${BASE_URL}appointment?status=Pending`);
       return response.data;
@@ -78,7 +78,7 @@ export const useFetchPendingAppointments = () => {
 };
 export const useFetchCompletedAppointments = () => {
   return useQuery({
-    queryKey: ["appointments"],
+    queryKey: ["completedappointments"],
     queryFn: async () => {
       const response = await axios.get(`${BASE_URL}appointment?status=Completed`);
       return response.data;
@@ -87,7 +87,7 @@ export const useFetchCompletedAppointments = () => {
 };
 export const useFetchDeclinedAppointments = () => {
   return useQuery({
-    queryKey: ["appointments"],
+    queryKey: ["declinedappointments"],
     queryFn: async () => {
       const response = await axios.get(`${BASE_URL}appointment?status=Declined`);
       return response.data;
@@ -96,7 +96,7 @@ export const useFetchDeclinedAppointments = () => {
 };
 export const useFetchApprovedAppointments = () => {
   return useQuery({
-    queryKey: ["appointments"],
+    queryKey: ["approvedappointments"],
     queryFn: async () => {
       const response = await axios.get(`${BASE_URL}appointment?status=Approved`);
       return response.data;
