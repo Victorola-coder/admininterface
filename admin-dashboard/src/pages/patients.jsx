@@ -5,7 +5,7 @@ import del from "../../public/del.svg";
 import edit from "../../public/edit.svg";
 import view from "../../public/view.svg";
 import { BiPlus } from "react-icons/bi";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Custominput from "../components/custominput";
 import axios from "axios";
 
@@ -75,7 +75,7 @@ export default function Patients() {
           >
             <Custominput
               value={patientData.name}
-              field=""
+              field="name"
               onChange={handleInputChange}
               placeholder="Enter Full Name"
               type="text"
@@ -132,7 +132,7 @@ export default function Patients() {
               value={patientData.dob}
             />
             <Custominput
-              field="Address"
+              field="address"
               placeholder="Enter Address"
               type="text"
               value={patientData.address}
