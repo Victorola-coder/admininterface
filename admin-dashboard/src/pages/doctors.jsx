@@ -24,20 +24,26 @@ export default function Doctors() {
     availableTime: [],
   });
   const {
-    data: doctors,
+    data,
     error: doctorsErr,
-    loading,
-  } = useFetch(BASE_URL + "users", "doctors");
-  const { mutate, postData, error } = useAddData(
-    BASE_URL + "auth/create-doctors",
-    doctorData,
-    "doctors"
-  );
+    isLoading,
+  } = useFetch(BASE_URL + "users?role=Doctor", "doctors");
+
+  // Use optional chaining (?.) to safely access nested properties
+  const doctors = data?.data || [];
+
+  // const { mutate, postData, error } = useAddData(
+  //   BASE_URL + "auth/create-doctors",
+  //   doctorData,
+  //   "doctors"
+  // );
+  // console.log(isLoading, doctors);
   const { mutate: deleteData, error: deleteError } = useDeleteData(
-    `https://doctermy.onrender.com/api/v1/users?role=Doctor`,
+    BASE_URL + "users",
     "doctors"
   );
-  console.log(doctors);
+
+  // console.log(doctors);
   const timeRanges = [
     "12am - 4am",
     "4am - 8am",
@@ -281,7 +287,7 @@ export default function Doctors() {
         </div>
         {/* table from shad will replace  */}
         <div className=" overflow-x-auto">
-          <table className="w-full min-w-[900px]  mt-2 mb-4 text-[#858585] font-medium">
+          <table className="w-full min-w-[1000px]  mt-2 mb-4 text-[#858585] font-medium">
             <thead>
               <tr className="text-[14px]  sm:text-[16px] md:text-[18px] pb-4 h-[60px] leading-[150%]">
                 <th className="text-left">S/N</th>
@@ -294,34 +300,53 @@ export default function Doctors() {
               </tr>
             </thead>
             <tbody className="text-[12px] sm:text-[14px] md:text-[16px] leading-[150%] text-[#0E0E0E]">
-              {[1, 2, 3, 4].map((index) => (
-                <tr className="border-t border-[#CECECE] h-[61px]" key={index}>
-                  <td>{index}</td>
-                  <td className="whitespace-normal">Martin Okechukwu</td>
-                  <td className="whitespace-normal">Dr. Okechukwu</td>
-                  <td className="whitespace-normal">Monday 24 October</td>
-                  <td className="whitespace-normal">9:00 am - 10:00 am</td>
-                  <td className="whitespace-normal">okeymartin@gmail.com</td>
-                  <td className="flex items-center h-[61px] gap-3.5">
-                    <img
-                      onClick={() => deleteData(index)}
-                      src={del}
-                      className="w-[25px] h-[25px] md:w-[35px] md:h-[35px]"
-                      alt="Delete"
-                    />
-                    <img
-                      src={edit}
-                      className="w-[25px] h-[25px] md:w-[35px] md:h-[35px]"
-                      alt="Edit"
-                    />
-                    <img
-                      src={view}
-                      className="w-[25px] h-[25px] md:w-[35px] md:h-[35px]"
-                      alt="View"
-                    />
-                  </td>
-                </tr>
-              ))}
+              {isLoading
+                ? "Loading"
+                : doctors.map((doctor, index) => (
+                    <tr
+                      className="border-t border-[#CECECE] h-[61px]"
+                      key={doctor?._id}
+                    >
+                      <td>{index + 1}</td>
+                      <td className="whitespace-normal">
+                        {doctor?.name || "N/A"}
+                      </td>
+                      <td className="whitespace-normal">
+                        {doctor?.specialty || "N/A"}
+                      </td>
+                      <td className="whitespace-normal">
+                        {doctor?.uniqueId || "N/A"}
+                      </td>
+                      <td className="whitespace-normal">
+                        {" "}
+                        {doctor?.phoneNumber || "N/A"}
+                      </td>
+                      <td className="whitespace-normal">
+                        {doctor?.email || "N/A"}
+                      </td>
+                      <td className="flex items-center h-[61px] gap-3.5">
+                        <img
+                          src={del}
+                          className="w-[25px] cursor-pointer h-[25px] md:w-[35px] md:h-[35px]"
+                          alt="Delete"
+                        />
+                        <img
+                          src={edit}
+                          className="w-[25px] cursor-pointer h-[25px] md:w-[35px] md:h-[35px]"
+                          alt="Edit"
+                        />
+                        <img
+                          onClick={() => {
+                            console.log("we can click");
+                            deleteData(doctor._id);
+                          }}
+                          src={view}
+                          className="w-[25px] cursor-pointer h-[25px] md:w-[35px] md:h-[35px]"
+                          alt="View"
+                        />
+                      </td>
+                    </tr>
+                  ))}
             </tbody>
           </table>
         </div>

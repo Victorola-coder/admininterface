@@ -1,9 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import axios from "axios"
+import axios from '../config/axios'
 
 
 export const useFetch = (url, key) => {
-    console.log(url)
+    console.log()
     const { data, isLoading, isError, error } = useQuery({
     
       queryKey: [key],
@@ -32,6 +32,7 @@ export const useAddData =(url,data,key) => {
     return { mutate,error ,postData}
 }
 export const useDeleteData = (url, key) => {
+    console.log('clicked')
     const queryClient = useQueryClient();
   
     const mutation = useMutation({
