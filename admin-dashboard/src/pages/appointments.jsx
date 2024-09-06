@@ -3,15 +3,11 @@ import { AppointmentsNav } from "../components/appointementrsnav";
 import { BASE_URL } from "../config";
 import { Dashboard } from "../layouts";
 import AppointmentsLayout from "../layouts/appointmentlayout";
-import { useFetch } from "../queries/queries";
+import { useFetch, useFetchPendingAppointments } from "../queries/queries";
 import { format } from "date-fns";
 const Appointments = () => {
-  const {
-    data,
-    error: doctorsErr,
-    isLoading,
-  } = useFetch(BASE_URL + "appointment?status=Pending", "appointments");
-  // console.log(data);
+  const { data, error, isError, isLoading } = useFetchPendingAppointments();
+
   const appointments = data?.data || [];
   console.log(appointments);
   return (

@@ -11,8 +11,12 @@ import { useDoctorStore } from "../store/doctorstore";
 import { BASE_URL } from "../config";
 import {
   useFetch,
+  useFetchApprovedAppointments,
+  useFetchCompletedAppointments,
+  useFetchDeclinedAppointments,
   useFetchDoctors,
   useFetchPatients,
+  useFetchPendingAppointments,
 } from "../queries/queries";
 
 export const Chat = () => {
@@ -20,31 +24,14 @@ export const Chat = () => {
   const { data: pat } = useFetchPatients();
   const doctors = doc?.data || [];
   const patients = pat?.data || [];
-  const {
-    data: approved,
-    error: doctorsErr,
-    isLoading,
-  } = useFetch(BASE_URL + "appointment?status=Approved", "approved");
-  const appointments = approved?.data || [];
-  const { data: Declined } = useFetch(
-    BASE_URL + "appointment?status=Declined",
-    "Declined"
-  );
+
+  const { data: Declined } = useFetchDeclinedAppointments();
   const DeclinedData = Declined?.data || [];
-  const { data: Pending } = useFetch(
-    BASE_URL + "appointment?status=Pending",
-    "Pending"
-  );
+  const { data: Pending } = useFetchPendingAppointments();
   const PendingData = Pending?.data || [];
-  const { data: Complete } = useFetch(
-    BASE_URL + "appointment?status=Completed",
-    "Complete"
-  );
+  const { data: Complete } = useFetchCompletedAppointments();
   const CompleteData = Complete?.data || [];
-  const { data: Approve } = useFetch(
-    BASE_URL + "appointment?status=Approved",
-    "Approve"
-  );
+  const { data: Approve } = useFetchApprovedAppointments();
   const ApprovedData = Approve?.data || [];
   return (
     <Dashboard>

@@ -67,6 +67,42 @@ export const useFetchAppointments = () => {
     },
   });
 };
+export const useFetchPendingAppointments = () => {
+  return useQuery({
+    queryKey: ["appointments"],
+    queryFn: async () => {
+      const response = await axios.get(`${BASE_URL}appointment?status=Pending`);
+      return response.data;
+    },
+  });
+};
+export const useFetchCompletedAppointments = () => {
+  return useQuery({
+    queryKey: ["appointments"],
+    queryFn: async () => {
+      const response = await axios.get(`${BASE_URL}appointment?status=Completed`);
+      return response.data;
+    },
+  });
+};
+export const useFetchDeclinedAppointments = () => {
+  return useQuery({
+    queryKey: ["appointments"],
+    queryFn: async () => {
+      const response = await axios.get(`${BASE_URL}appointment?status=Declined`);
+      return response.data;
+    },
+  });
+};
+export const useFetchApprovedAppointments = () => {
+  return useQuery({
+    queryKey: ["appointments"],
+    queryFn: async () => {
+      const response = await axios.get(`${BASE_URL}appointment?status=Approved`);
+      return response.data;
+    },
+  });
+};
 
 export const useDeleteData = (url, key) => {
     const queryClient = useQueryClient();

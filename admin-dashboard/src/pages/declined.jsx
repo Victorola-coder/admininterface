@@ -4,16 +4,11 @@ import CustomStatus from "../components/customstatus";
 import { BASE_URL } from "../config";
 import { Dashboard } from "../layouts";
 import AppointmentsLayout from "../layouts/appointmentlayout";
-import { useFetch } from "../queries/queries";
+import { useFetch, useFetchDeclinedAppointments } from "../queries/queries";
 
 import { format } from "date-fns";
 const DeclinedAppointments = () => {
-  const {
-    data,
-    error: doctorsErr,
-    isLoading,
-  } = useFetch(BASE_URL + "appointment?status=Declined", "appointments");
-  // console.log(data);
+  const { data, error, isError, isLoading } = useFetchDeclinedAppointments();
   const appointments = data?.data || [];
   return (
     <Dashboard>
