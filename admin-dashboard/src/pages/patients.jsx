@@ -38,7 +38,7 @@ export default function Patients() {
           <form className="grid place-items-center w-fit mx-auto gap-8 grid-cols-1 lg:grid-cols-2">
             <Custominput
               value={patientData.name}
-              field=""
+              field="name"
               onChange={handleInputChange}
               placeholder="Enter Full Name"
               type="text"
@@ -85,7 +85,7 @@ export default function Patients() {
               value={patientData.dob}
             />
             <Custominput
-              field="Address"
+              field="address"
               placeholder="Enter Address"
               type="text"
               value={patientData.address}
