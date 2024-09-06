@@ -5,9 +5,8 @@ import del from "../../public/del.svg";
 import edit from "../../public/edit.svg";
 import view from "../../public/view.svg";
 import { BiPlus } from "react-icons/bi";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Custominput from "../components/custominput";
-import axios from "axios";
 
 export default function Patients() {
   const [patientData, setPatientData] = useState({
@@ -28,39 +27,6 @@ export default function Patients() {
   };
 
   const [formInput, setFormInput] = useState(false);
-  const [patients, setPatients] = useState([]);
-  const [patientData, setPatientData] = useState({
-    name: "",
-    email: "",
-    medicalID: "",
-    gender: "",
-    phoneNumber: "",
-    dob: "",
-    address: "",
-  });
-
-  const handleSubmit = () => {
-    const fetchPatients = async () => {
-      try {
-        const result = await axios.get(
-          "https://doctermy.onrender.com/api/v1/patients"
-        );
-        setPatients(result.data);
-      } catch (error) {
-        console.error("Error fetching patients:", error);
-      }
-    };
-
-    fetchPatients();
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setPatientData({
-      ...patientData,
-      [name]: value,
-    });
-  };
 
   if (formInput) {
     return (
@@ -69,10 +35,7 @@ export default function Patients() {
           <h1 className=" text-center text-[24px]  leading-[120%]  mb-[52px]  font-medium">
             Add Patient
           </h1>
-          <form
-            onSubmit={handleSubmit}
-            className="grid place-items-center w-fit mx-auto gap-8 grid-cols-1 lg:grid-cols-2"
-          >
+          <form className="grid place-items-center w-fit mx-auto gap-8 grid-cols-1 lg:grid-cols-2">
             <Custominput
               value={patientData.name}
               field=""
@@ -80,8 +43,6 @@ export default function Patients() {
               placeholder="Enter Full Name"
               type="text"
               name="name"
-              value={patientData.name}
-              onChange={handleInputChange}
             />
             <Custominput
               type="text"
@@ -89,10 +50,7 @@ export default function Patients() {
               value={patientData.medicalID}
               onChange={handleInputChange}
               placeholder="Enter Medical Id"
-              type="text"
               name="medicalID"
-              value={patientData.medicalID}
-              onChange={handleInputChange}
             />
             <Custominput
               name="email"
@@ -105,8 +63,6 @@ export default function Patients() {
             <Custominput
               type="dropdown"
               field="gender"
-              value={patientData.gender}
-              onChange={handleInputChange}
               placeholder="Enter Gender"
               dropdownvalue={["Male", "Female"]}
               name="gender"
@@ -119,10 +75,7 @@ export default function Patients() {
               onChange={handleInputChange}
               value={patientData.phoneNumber}
               placeholder="Enter Phone Number"
-              type="number"
               name="phoneNumber"
-              value={patientData.phoneNumber}
-              onChange={handleInputChange}
             />
             <Custominput
               field="Date Of Birth"

@@ -3,7 +3,9 @@ import axios from "axios"
 
 
 export const useFetch = (url, key) => {
+    console.log(url)
     const { data, isLoading, isError, error } = useQuery({
+    
       queryKey: [key],
       queryFn: async () => {
         const response = await axios.get(url);

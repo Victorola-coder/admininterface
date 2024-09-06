@@ -11,6 +11,7 @@ import Custominput from "../components/custominput";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAddData, useDeleteData, useFetch } from "../queries/queries";
+import { BASE_URL } from "../config";
 export default function Doctors() {
   const [doctorData, setDoctorData] = useState({
     fullName: "",
@@ -19,14 +20,16 @@ export default function Doctors() {
     medicalId: "",
     specialty: "",
     address: "",
+    availableDays: [],
+    availableTime: [],
   });
   const {
     data: doctors,
     error: doctorsErr,
     loading,
-  } = useFetch("https:doctermy.onrender.com/api/v1/doctors", "doctors");
+  } = useFetch(BASE_URL + "users", "doctors");
   const { mutate, postData, error } = useAddData(
-    "https://doctermy.onrender.com/api/v1/users?role=Doctor",
+    BASE_URL + "auth/create-doctors",
     doctorData,
     "doctors"
   );
@@ -34,6 +37,7 @@ export default function Doctors() {
     `https://doctermy.onrender.com/api/v1/users?role=Doctor`,
     "doctors"
   );
+  console.log(doctors);
   const timeRanges = [
     "12am - 4am",
     "4am - 8am",
@@ -128,6 +132,12 @@ export default function Doctors() {
                 {daysOfWeek.map((day) => (
                   <div key={day} className="flex">
                     <input
+                      onChange={() => {
+                        setDoctorData({
+                          ...doctorData,
+                          availableDays: [...doctorData.availableDays, day],
+                        });
+                      }}
                       className="size-6 rounded-sm mr-4"
                       type="checkbox"
                       name=""
@@ -146,6 +156,12 @@ export default function Doctors() {
                 {timeRanges.map((day) => (
                   <div key={day} className="flex">
                     <input
+                      onChange={() => {
+                        setDoctorData({
+                          ...doctorData,
+                          availableTime: [...doctorData.availableTime, day],
+                        });
+                      }}
                       className="size-6 rounded-sm mr-4"
                       type="checkbox"
                       name=""
