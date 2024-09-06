@@ -2,7 +2,16 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 
-const Custominput = ({ field, type, placeholder, dropdownvalue }) => {
+const Custominput = ({
+  field,
+  value,
+  onChange,
+  type,
+  name,
+  placeholder,
+  dropdownvalue,
+}) => {
+  // console.log(name);
   return (
     <fieldset className=" flex w-[90%] lg:w-auto flex-col">
       <label
@@ -13,20 +22,23 @@ const Custominput = ({ field, type, placeholder, dropdownvalue }) => {
       </label>
       {type === "dropdown" ? (
         <select
+          onChange={onChange}
           className=" w-full lg:w-[440px] px-5 py-[18px] h-[60px] placeholder:text-[16px] text-[#B1B1B1]  placeholder:leading-[150%] rounded-[10px]  border border-[#B1B1B1]"
-          name=""
+          name={name}
           id=""
         >
-          <option value="">Select Gender</option>
+          <option value="">Select One</option>
           {dropdownvalue.map((d) => (
             <option key={d}>{d}</option>
           ))}
         </select>
       ) : (
         <input
+          onChange={onChange}
           className=" w-full lg:w-[440px] px-5 py-[18px] h-[60px] placeholder:text-[16px] text-[#B1B1B1]  placeholder:leading-[150%] rounded-[10px]  border border-[#B1B1B1]"
           type={type}
-          name={field}
+          value={value}
+          name={name}
           placeholder={placeholder}
         />
       )}

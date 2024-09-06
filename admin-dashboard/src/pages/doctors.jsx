@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Dashboard } from "../layouts";
 
 import d1 from "../../public/d1.svg";
@@ -9,7 +10,30 @@ import { BiPlus } from "react-icons/bi";
 import Custominput from "../components/custominput";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useAddData, useDeleteData, useFetch } from "../queries/queries";
 export default function Doctors() {
+  const [doctorData, setDoctorData] = useState({
+    fullName: "",
+    email: "",
+    phoneNumber: "",
+    medicalId: "",
+    specialty: "",
+    address: "",
+  });
+  const {
+    data: doctors,
+    error: doctorsErr,
+    loading,
+  } = useFetch("https:doctermy.onrender.com/api/v1/doctors", "doctors");
+  const { mutate, postData, error } = useAddData(
+    "https://doctermy.onrender.com/api/v1/users?role=Doctor",
+    doctorData,
+    "doctors"
+  );
+  const { mutate: deleteData, error: deleteError } = useDeleteData(
+    `https://doctermy.onrender.com/api/v1/users?role=Doctor`,
+    "doctors"
+  );
   const timeRanges = [
     "12am - 4am",
     "4am - 8am",
@@ -27,24 +51,16 @@ export default function Doctors() {
     "Friday",
     "Saturday",
   ];
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
 
-  const [doctors, setDoctors] = useState([]);
-  useEffect(() => {
-    const fetchDoctors = async () => {
-      try {
-        const result = await axios.get(
-          "https://doctermy.onrender.com/api/v1/doctors"
-        );
-        setDoctors(result.data);
-      } catch (error) {
-        console.error("Error fetching doctors:", error);
-      }
-    };
-
-    fetchDoctors();
-  }, []);
-  console.log(doctors);
-
+    console.log(name, value);
+    setDoctorData({
+      ...doctorData,
+      [name]: value,
+    });
+  };
+  console.log(doctorData);
   const [formInput, setFormInput] = useState(false);
   if (formInput) {
     return (
@@ -55,29 +71,51 @@ export default function Doctors() {
           </h1>
           <div className="grid place-items-center w-full  lg:w-fit mx-auto gap-8 grid-cols-1 lg:grid-cols-2">
             <Custominput
+              name="fullName"
               field="Full Name"
               placeholder="Enter Full Name"
               type="text"
+              value={doctorData.fullName}
+              onChange={handleInputChange}
             />
             <Custominput
+              value={doctorData.medicalId}
+              onChange={handleInputChange}
+              name="medicalId"
               field="Medical ID"
               placeholder="Enter Medical Id"
               type="text"
             />
-            <Custominput field="Email" placeholder="Enter Email" type="email" />
             <Custominput
-              field="Specialty"
-              placeholder="Enter Specialty"
-              type="dropdown"
-              dropdownvalue={["Male", "Female"]}
+              value={doctorData.email}
+              onChange={handleInputChange}
+              name="email"
+              field="Email"
+              placeholder="Enter Email"
+              type="email"
             />
             <Custominput
+              value={doctorData.specialty}
+              onChange={handleInputChange}
+              field="Specialty"
+              name="specialty"
+              placeholder="Enter Specialty"
+              type="dropdown"
+              dropdownvalue={["Optometrist", "Dentist"]}
+            />
+            <Custominput
+              value={doctorData.phoneNumber}
+              onChange={handleInputChange}
+              name="phoneNumber"
               field="Phone Number"
               placeholder="Enter Phone Number"
               type="number"
             />
 
             <Custominput
+              value={doctorData.address}
+              onChange={handleInputChange}
+              name="address"
               field="Address"
               placeholder="Enter Address"
               type="text"
@@ -120,7 +158,19 @@ export default function Doctors() {
             </div>
           </div>
 
-          <button className=" w-[90%] lg:w-[440px] font-semibold  text-[16px]  rounded-[5px]  bg-[#00B4D8] flex justify-center items-center mt-[52px] mx-auto text-center text-white h-[56px]">
+          <button
+            onClick={() => {
+              setDoctorData({
+                fullName: "",
+                email: "",
+                phoneNumber: "",
+                medicalId: "",
+                specialty: "",
+                address: "",
+              });
+            }}
+            className=" w-[90%] lg:w-[440px] font-semibold  text-[16px]  rounded-[5px]  bg-[#00B4D8] flex justify-center items-center mt-[52px] mx-auto text-center text-white h-[56px]"
+          >
             Register
           </button>
         </div>
@@ -238,6 +288,7 @@ export default function Doctors() {
                   <td className="whitespace-normal">okeymartin@gmail.com</td>
                   <td className="flex items-center h-[61px] gap-3.5">
                     <img
+                      onClick={() => deleteData(index)}
                       src={del}
                       className="w-[25px] h-[25px] md:w-[35px] md:h-[35px]"
                       alt="Delete"

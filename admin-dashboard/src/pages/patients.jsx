@@ -8,6 +8,23 @@ import { BiPlus } from "react-icons/bi";
 import { useState } from "react";
 import Custominput from "../components/custominput";
 export default function Patients() {
+  const [patientData, setPatientData] = useState({
+    name: "",
+    email: "",
+    gender: "",
+    phoneNumber: "",
+    medicalID: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setPatientData({
+      ...patientData,
+      [name]: value,
+    });
+  };
+
   const [formInput, setFormInput] = useState(false);
   if (formInput) {
     return (
@@ -21,23 +38,42 @@ export default function Patients() {
               field="Full Name"
               placeholder="Enter Full Name"
               type="text"
+              name="name"
+              value={patientData.name}
+              onChange={handleInputChange}
             />
             <Custominput
               field="Medical ID"
               placeholder="Enter Medical Id"
               type="text"
+              name="medicalID"
+              value={patientData.medicalID}
+              onChange={handleInputChange}
             />
-            <Custominput field="Email" placeholder="Enter Email" type="email" />
+            <Custominput
+              name="email"
+              value={patientData.email}
+              onChange={handleInputChange}
+              field="Email"
+              placeholder="Enter Email"
+              type="email"
+            />
             <Custominput
               field="Gender"
               placeholder="Enter Gender"
               type="dropdown"
               dropdownvalue={["Male", "Female"]}
+              name="gender"
+              value={patientData.gender}
+              onChange={handleInputChange}
             />
             <Custominput
               field="Phone Number"
               placeholder="Enter Phone Number"
               type="number"
+              name="phoneNumber"
+              value={patientData.phoneNumber}
+              onChange={handleInputChange}
             />
             <Custominput
               field="Date Of Birth"

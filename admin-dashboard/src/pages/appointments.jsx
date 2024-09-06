@@ -3,7 +3,7 @@ import { AppointmentsNav } from "../components/appointementrsnav";
 import { Dashboard } from "../layouts";
 import AppointmentsLayout from "../layouts/appointmentlayout";
 
-const appointments = () => {
+const Appointments = () => {
   return (
     <Dashboard>
       <AppointmentsLayout>
@@ -38,4 +38,4 @@ const appointments = () => {
   );
 };
 
-export default appointments;
+export default Appointments;
