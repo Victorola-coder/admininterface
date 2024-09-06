@@ -1,10 +1,20 @@
 /* eslint-disable no-unused-vars */
 import { AppointmentsNav } from "../components/appointementrsnav";
 import CustomStatus from "../components/customstatus";
+import { BASE_URL } from "../config";
 import { Dashboard } from "../layouts";
 import AppointmentsLayout from "../layouts/appointmentlayout";
+import { useFetch } from "../queries/queries";
 
+import { format } from "date-fns";
 const DeclinedAppointments = () => {
+  const {
+    data,
+    error: doctorsErr,
+    isLoading,
+  } = useFetch(BASE_URL + "appointment?status=Declined", "appointments");
+  // console.log(data);
+  const appointments = data?.data || [];
   return (
     <Dashboard>
       <AppointmentsLayout>
@@ -18,16 +28,16 @@ const DeclinedAppointments = () => {
             <span>Purpose</span>
             <span>Status</span>
           </div>
-          {[1, 2, 3, 4].map((index) => (
+          {appointments.map((app) => (
             <div
               className="min-w-[700px] grid text-[12px] sm:text-[14px] xl:text-[16px] leading-[150%] text-[#0E0E0E] py-7  grid-cols-6 gap-x-4 items-center border-t border-[#CECECE]"
-              key={index}
+              key={app._id}
             >
-              <span>Mr Dike</span>
-              <span>Dr. Okechukwu</span>
-              <span>Monday 24 October</span>
+              <span>{app?.patientId?.name}</span>
+              <span>{app?.doctorId?.name || "NA"}</span>
+              <span>{format(new Date(app?.createdAt), "EEEE dd MMMM")}</span>
               <span>9:00 am - 10:00 am</span>
-              <span>Purpose</span>
+              <span>{app?.type}</span>
               <CustomStatus status="declined" />
             </div>
           ))}
