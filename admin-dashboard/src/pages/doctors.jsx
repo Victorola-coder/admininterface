@@ -32,12 +32,12 @@ export default function Doctors() {
   // Use optional chaining (?.) to safely access nested properties
   const doctors = data?.data || [];
 
-  // const { mutate, postData, error } = useAddData(
-  //   BASE_URL + "auth/create-doctors",
-  //   doctorData,
-  //   "doctors"
-  // );
-  // console.log(isLoading, doctors);
+  const { mutate, postData, error } = useAddData(
+    BASE_URL + "auth/create-doctors",
+
+    "doctors"
+  );
+  //console.log(isLoading, doctors);
   const { mutate: deleteData, error: deleteError } = useDeleteData(
     BASE_URL + "users",
     "doctors"
@@ -182,14 +182,15 @@ export default function Doctors() {
 
           <button
             onClick={() => {
-              setDoctorData({
-                fullName: "",
-                email: "",
-                phoneNumber: "",
-                medicalId: "",
-                specialty: "",
-                address: "",
-              });
+              mutate(doctorData);
+              // setDoctorData({
+              //   fullName: "",
+              //   email: "",
+              //   phoneNumber: "",
+              //   medicalId: "",
+              //   specialty: "",
+              //   address: "",
+              // });
             }}
             className=" w-[90%] lg:w-[440px] font-semibold  text-[16px]  rounded-[5px]  bg-[#00B4D8] flex justify-center items-center mt-[52px] mx-auto text-center text-white h-[56px]"
           >
@@ -220,7 +221,7 @@ export default function Doctors() {
               />
               <div className="flex flex-col">
                 <p className="text-[24px] sm:text-[32px] leading-[120%] font-medium text-[#0E0E0E]">
-                  13
+                  {doctors.length}
                 </p>
                 <p className="text-[14px] sm:text-[18px] leading-[150%] font-normal text-[#6D6D6D]">
                   Doctors Registered
@@ -250,7 +251,7 @@ export default function Doctors() {
               <div className="flex flex-col gap-[15px] sm:gap-[21.5px]">
                 <div className="flex items-center gap-4">
                   <p className="text-[24px] sm:text-[32px] leading-[120%] font-medium text-[#0E0E0E]">
-                    13
+                    {doctors.length}
                   </p>
                   <p className="text-[14px] sm:text-[18px] leading-[150%] font-normal text-[#6D6D6D]">
                     Doctors Registered
@@ -259,7 +260,7 @@ export default function Doctors() {
 
                 <div className="flex items-center gap-4">
                   <p className="text-[24px] sm:text-[32px] leading-[120%] font-medium text-[#0E0E0E]">
-                    13
+                    {doctors.length}
                   </p>
                   <p className="text-[14px] sm:text-[18px] leading-[150%] font-normal text-[#6D6D6D]">
                     Doctors Registered
@@ -268,7 +269,7 @@ export default function Doctors() {
 
                 <div className="flex items-center gap-4">
                   <p className="text-[24px] sm:text-[32px] leading-[120%] font-medium text-[#0E0E0E]">
-                    13
+                    {doctors.length}
                   </p>
                   <p className="text-[14px] sm:text-[18px] leading-[150%] font-normal text-[#6D6D6D]">
                     Doctors Registered

@@ -1,48 +1,53 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import axios from '../config/axios'
+import { useDoctorStore } from "../store/doctorstore";
 
 
 export const useFetch = (url, key) => {
-    console.log()
+    const setDoctors = useDoctorStore((state) => state.setDoctors);
+  
     const { data, isLoading, isError, error } = useQuery({
-    
       queryKey: [key],
       queryFn: async () => {
         const response = await axios.get(url);
+        // console.log('Data fetched successfully:', data);
+        setDoctors(response.data.data);
         return response.data;
       },
+     
     });
   
     return { data, isLoading, isError, error };
   };
-  
+export const useAddData =(url,key) => {
+    const addDoctor = useDoctorStore((state) => state.addDoctor);
 
-export const useAddData =(url,data,key) => {
+
     // Access the client
   const queryClient = useQueryClient()
      // Mutations
   const {data:postData,mutate,error} = useMutation({
-    mutationFn: axios.post(url,data),
-    onSuccess: () => {
+    mutationFn:(data) => axios.post(url,data),
+    onSuccess: (newDoctor) => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: [key] })
+      addDoctor(newDoctor.data);
     },
   })
 
     return { mutate,error ,postData}
 }
 export const useDeleteData = (url, key) => {
-    console.log('clicked')
     const queryClient = useQueryClient();
+    const removeDoctor = useDoctorStore((state) => state.removeDoctor);
   
-    const mutation = useMutation({
-      // Make the mutationFn dynamic by passing the id as an argument
+    const { mutate, error, data } = useMutation({
       mutationFn: (id) => axios.delete(`${url}/${id}`),
-      onSuccess: () => {
-        // Invalidate and refetch queries
+      onSuccess: (doctor) => {
         queryClient.invalidateQueries({ queryKey: [key] });
-      },
+        removeDoctor(doctor.data._id); // Update Zustand store on success
+      }
     });
   
-    return { mutate: mutation.mutate, error: mutation.error, data: mutation.data };
+    return { mutate, error, data };
   };
